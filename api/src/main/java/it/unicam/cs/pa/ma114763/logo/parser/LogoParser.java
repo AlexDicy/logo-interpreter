@@ -1,5 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo.parser;
 
+import it.unicam.cs.pa.ma114763.logo.Color;
 import it.unicam.cs.pa.ma114763.logo.RGBColor;
 import it.unicam.cs.pa.ma114763.logo.Statement;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidCharactersException;
@@ -87,10 +88,10 @@ public class LogoParser implements Parser {
             case "HOME" -> getHomeStatement(tokens);
             case "PENUP", "PENDOWN" -> getSetDrawingStatement(tokens, command.equals("PENDOWN"));
             case "SETPENCOLOR" -> getSetStrokeColorStatement(tokens);
-            //case "SETFILLCOLOR" -> new SetFillColorStatement(tokens);
-            //case "SETSCREENCOLOR" -> new SetScreenColorStatement(tokens);
-            //case "SETPENSIZE" -> new SetPenSizeStatement(tokens);
-            //case "RIPETI" -> new RepeatStatement(tokens);
+            case "SETFILLCOLOR" -> getSetFillColorStatement(tokens);
+            case "SETSCREENCOLOR" -> getSetBackgroundColorStatement(tokens);
+            case "SETPENSIZE" -> getSetStrokeSizeStatement(tokens);
+            case "RIPETI" -> getRepeatStatement(tokens);
             default -> throw new UnknownCommandException(command);
         };
     }
@@ -130,21 +131,95 @@ public class LogoParser implements Parser {
 
     private Statement getSetStrokeColorStatement(List<Token> tokens) throws ParserException {
         checkNumberOfArguments(tokens, 3, 4);
+        Color color = getColor(tokens);
+        return new SetStrokeColorStatement(color);
+    }
 
+    private Statement getSetFillColorStatement(List<Token> tokens) throws ParserException {
+        checkNumberOfArguments(tokens, 3, 4);
+        Color color = getColor(tokens);
+        return new SetFillColorStatement(color);
+    }
+
+    private Statement getSetBackgroundColorStatement(List<Token> tokens) throws ParserException {
+        checkNumberOfArguments(tokens, 3, 4);
+        Color color = getColor(tokens);
+        return new SetBackgroundColorStatement(color);
+    }
+
+    private Statement getSetStrokeSizeStatement(List<Token> tokens) throws ParserException {
+        checkNumberOfArguments(tokens, 1);
+        Token firstArg = tokens.get(1);
+        checkArgumentNumber(firstArg);
+
+        int size = Integer.parseInt(firstArg.text());
+        if (size < 1) {
+            throw new InvalidSyntaxException(firstArg, "stroke size must be greater than 0");
+        }
+        return new SetStrokeSizeStatement(size);
+    }
+
+    private Statement getRepeatStatement(List<Token> tokens) throws ParserException {
+        checkNumberOfArgumentsAtLeast(tokens, 4);
+        checkArgumentNumber(tokens.get(1));
+        int times = Integer.parseInt(tokens.get(1).text());
+        checkArgumentLBracket(tokens.get(2));
+        List<Statement> statements = getRepeatInnerStatements(tokens, 3, tokens.size() - 1);
+        checkArgumentRBracket(tokens.get(tokens.size() - 1));
+        return new RepeatStatement(times, statements);
+    }
+
+    private List<Statement> getRepeatInnerStatements(List<Token> tokens, int startIndex, int endIndex) throws ParserException {
+        List<Statement> statements = new ArrayList<>();
+        int i = startIndex;
+
+        while (i < endIndex) {
+            List<Token> subTokens = getNextRepeatStatementTokens(tokens, i, endIndex);
+            statements.add(getStatement(subTokens.get(0).text().toUpperCase(), subTokens));
+            i += subTokens.size();
+        }
+        return statements;
+    }
+
+    private List<Token> getNextRepeatStatementTokens(List<Token> tokens, int i, int max) throws ParserException {
+        checkArgumentWord(tokens.get(i)); // command
+        // find the end of the command
+        int j = i + 1;
+        while (j < max && !(tokens.get(j).type() instanceof WordTokenType)) {
+            j++;
+        }
+        return tokens.subList(i, j);
+    }
+
+    /**
+     * Returns a color given a list of at least <b>4</b> tokens.
+     *
+     * @param tokens the list of tokens
+     * @return the color
+     * @throws ParserException if the list of tokens is not valid
+     */
+    private Color getColor(List<Token> tokens) throws ParserException {
         byte red = checkValidByte(tokens.get(1));
         byte green = checkValidByte(tokens.get(2));
         byte blue = checkValidByte(tokens.get(3));
 
         if (tokens.size() == 5) {
-            return new SetStrokeColorStatement(new RGBColor(red, green, blue, checkValidByte(tokens.get(4))));
+            return new RGBColor(red, green, blue, checkValidByte(tokens.get(4)));
         }
-        return new SetStrokeColorStatement(new RGBColor(red, green, blue));
+        return new RGBColor(red, green, blue);
     }
 
     private void checkNumberOfArguments(List<Token> tokens, int expected) throws InvalidSyntaxException {
         int given = tokens.size() - 1;
         if (given != expected) {
             throw new InvalidSyntaxException(tokens.get(0).text().toUpperCase(), "takes " + expected + " arguments, but " + given + " were given");
+        }
+    }
+
+    private void checkNumberOfArgumentsAtLeast(List<Token> tokens, int atLeast) throws InvalidSyntaxException {
+        int given = tokens.size() - 1;
+        if (given < atLeast) {
+            throw new InvalidSyntaxException(tokens.get(0).text().toUpperCase(), "takes at least " + atLeast + " arguments, but " + given + " were given");
         }
     }
 
@@ -169,6 +244,24 @@ public class LogoParser implements Parser {
             if (!(token.type() instanceof NumberTokenType)) {
                 throw new InvalidSyntaxException(token, "is not a number");
             }
+        }
+    }
+
+    private void checkArgumentWord(Token token) throws InvalidSyntaxException {
+        if (!(token.type() instanceof WordTokenType)) {
+            throw new InvalidSyntaxException(token, "is not a word");
+        }
+    }
+
+    private void checkArgumentLBracket(Token token) throws InvalidSyntaxException {
+        if (!(token.type() instanceof LBracketTokenType)) {
+            throw new InvalidSyntaxException(token, "is not a left bracket '['");
+        }
+    }
+
+    private void checkArgumentRBracket(Token token) throws InvalidSyntaxException {
+        if (!(token.type() instanceof RBracketTokenType)) {
+            throw new InvalidSyntaxException(token, "is not a right bracket ']'");
         }
     }
 
