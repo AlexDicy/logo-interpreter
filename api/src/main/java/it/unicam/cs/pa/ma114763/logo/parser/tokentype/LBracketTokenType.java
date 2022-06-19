@@ -11,6 +11,6 @@ import java.util.regex.Pattern;
  */
 public class LBracketTokenType extends TokenType {
     public LBracketTokenType() {
-        super("L_BRACKET", Pattern.compile("^\\[+$"));
+        super("L_BRACKET", Pattern.compile("^\\["));
     }
 }

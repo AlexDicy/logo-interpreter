@@ -11,6 +11,6 @@ import java.util.regex.Pattern;
  */
 public class RBracketTokenType extends TokenType {
     public RBracketTokenType() {
-        super("R_BRACKET", Pattern.compile("^]+$"));
+        super("R_BRACKET", Pattern.compile("^]"));
     }
 }

@@ -1,5 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo.parser;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -16,7 +17,15 @@ public abstract class TokenType {
         this.pattern = pattern;
     }
 
-    public boolean matches(String input) {
-        return pattern.matcher(input).matches();
+    /**
+     * @param input the string of characters
+     * @return 0 if the token doesn't match, the length of the matched string otherwise
+     */
+    public int matches(String input) {
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            return matcher.end();
+        }
+        return 0;
     }
 }

@@ -47,7 +47,7 @@ public class LogoParser implements Parser {
 
     private Statement parseLine(String line) throws ParserException {
         // split the input string on whitespace
-        String[] strings = line.split("\\s+");
+        String[] strings = line.split("\\s+|\\b");
         List<Token> tokens = getTokens(strings);
         // the first token is the command, and should be a word
         Token command = tokens.get(0);
@@ -66,18 +66,18 @@ public class LogoParser implements Parser {
             if (trimmed.isEmpty()) {
                 continue;
             }
-            tokens.add(getToken(trimmed));
+            tokens.addAll(getTokens(trimmed));
         }
 
         return tokens;
     }
 
-    private @NotNull Token getToken(String string) throws InvalidCharactersException {
-        Token token = tokenizer.matchToken(string);
-        if (token == null) {
+    private @NotNull List<Token> getTokens(String string) throws InvalidCharactersException {
+        List<Token> tokens = tokenizer.matchTokens(string);
+        if (tokens.size() == 0) {
             throw new InvalidCharactersException(string);
         }
-        return token;
+        return tokens;
     }
 
     private Statement getStatement(String command, List<Token> tokens) throws ParserException {
@@ -185,7 +185,13 @@ public class LogoParser implements Parser {
         checkArgumentWord(tokens.get(i)); // command
         // find the end of the command
         int j = i + 1;
-        while (j < max && !(tokens.get(j).type() instanceof WordTokenType)) {
+        int nestedBrackets = 0;
+        while (j < max) {
+            if (tokens.get(j).type() instanceof LBracketTokenType) nestedBrackets++;
+            else if (tokens.get(j).type() instanceof RBracketTokenType) nestedBrackets--;
+            if (nestedBrackets <= 0 && tokens.get(j).type() instanceof WordTokenType) {
+                break;
+            }
             j++;
         }
         return tokens.subList(i, j);

@@ -5,5 +5,5 @@ import it.unicam.cs.pa.ma114763.logo.Statement;
 /**
  * @author Lorenzo Lapucci
  */
-public class HomeStatement implements Statement {
+public record HomeStatement() implements Statement {
 }
