@@ -1,6 +1,6 @@
-package it.unicam.cs.pa2022.logo;
+package it.unicam.cs.pa.ma114763.logo;
 
-import it.unicam.cs.pa2022.logo.parser.Statement;
+import it.unicam.cs.pa.ma114763.logo.parser.Statement;
 
 import java.util.List;
 

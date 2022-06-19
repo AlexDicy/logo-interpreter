@@ -1,4 +1,4 @@
-package it.unicam.cs.pa2022.logo.parser;
+package it.unicam.cs.pa.ma114763.logo.parser;
 
 /**
  * Represents an instruction that can be executed on a canvas.

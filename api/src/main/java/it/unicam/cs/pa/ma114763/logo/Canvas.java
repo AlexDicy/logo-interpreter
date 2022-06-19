@@ -1,4 +1,4 @@
-package it.unicam.cs.pa2022.logo;
+package it.unicam.cs.pa.ma114763.logo;
 
 import java.util.List;
 

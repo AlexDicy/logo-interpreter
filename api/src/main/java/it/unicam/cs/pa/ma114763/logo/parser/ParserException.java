@@ -1,4 +1,4 @@
-package it.unicam.cs.pa2022.logo.parser;
+package it.unicam.cs.pa.ma114763.logo.parser;
 
 /**
  * Used by {@link Parser} to signal that an error occurred while parsing.

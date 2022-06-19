@@ -1,4 +1,4 @@
-package it.unicam.cs.pa2022.logo;
+package it.unicam.cs.pa.ma114763.logo;
 
 /**
  * Represents a color is sRGB color space. Supports transparency.

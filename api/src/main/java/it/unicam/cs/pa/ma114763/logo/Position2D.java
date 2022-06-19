@@ -1,4 +1,4 @@
-package it.unicam.cs.pa2022.logo;
+package it.unicam.cs.pa.ma114763.logo;
 
 /**
  * Position2D is a class that represents a position in a 2D space
