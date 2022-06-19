@@ -14,5 +14,5 @@ public interface Tokenizer {
      * @param input the string of characters
      * @return the matched token or null if no token was matched
      */
-    @Nullable Token nextToken(String input);
+    @Nullable Token matchToken(String input);
 }

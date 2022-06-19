@@ -13,7 +13,7 @@ public class LogoTokenizer implements Tokenizer {
     }
 
     @Override
-    public @Nullable Token nextToken(String input) {
+    public @Nullable Token matchToken(String input) {
         for (TokenType type : types) {
             if (type.matches(input)) {
                 return new Token(input, type);
