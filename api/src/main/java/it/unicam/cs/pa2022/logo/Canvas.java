@@ -1,5 +1,7 @@
 package it.unicam.cs.pa2022.logo;
 
+import java.util.List;
+
 /**
  * A Canvas holds information about the drawing, such as size, current position,
  * current color, shapes, and the background color.
@@ -84,4 +86,11 @@ public interface Canvas {
      * If false, the cursor will not draw.
      */
     void setDrawing(boolean drawing);
+
+    /**
+     * Returns a list of all shapes on the canvas, ordered by their appearance.
+     *
+     * @return every shape currently drawn on the canvas
+     */
+    List<Shape> getShapes();
 }
