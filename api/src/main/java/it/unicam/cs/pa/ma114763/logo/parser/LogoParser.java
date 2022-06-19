@@ -1,8 +1,14 @@
 package it.unicam.cs.pa.ma114763.logo.parser;
 
+import it.unicam.cs.pa.ma114763.logo.Statement;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidCharactersException;
+import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidSyntaxException;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
+import it.unicam.cs.pa.ma114763.logo.parser.exception.UnknownCommandException;
 import it.unicam.cs.pa.ma114763.logo.parser.tokentype.*;
+import it.unicam.cs.pa.ma114763.logo.statement.IncrementAngleStatement;
+import it.unicam.cs.pa.ma114763.logo.statement.MoveStatement;
+import it.unicam.cs.pa.ma114763.logo.statement.SetDrawingStatement;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -43,7 +49,12 @@ public class LogoParser implements Parser {
         // split the input string on whitespace
         String[] strings = line.split("\\s+");
         List<Token> tokens = getTokens(strings);
-        return null;
+        // the first token is the command, and should be a word
+        Token command = tokens.get(0);
+        if (!(command.type() instanceof WordTokenType)) {
+            throw new ParserException("Invalid command start syntax: " + command.text());
+        }
+        return getStatement(command.text().toUpperCase(), tokens);
     }
 
     protected List<Token> getTokens(String[] strings) throws InvalidCharactersException {
@@ -67,5 +78,57 @@ public class LogoParser implements Parser {
             throw new InvalidCharactersException(string);
         }
         return token;
+    }
+
+    private Statement getStatement(String command, List<Token> tokens) throws ParserException {
+        return switch (command) {
+            case "FORWARD", "BACKWARD" -> getMoveStatement(tokens, command.equals("BACKWARD"));
+            case "LEFT", "RIGHT" -> getAngleStatement(tokens, command.equals("LEFT"));
+            //case "CLEARSCREEN" -> new ClearScreenStatement();
+            //case "HOME" -> new HomeStatement();
+            case "PENUP", "PENDOWN" -> getSetDrawingStatement(tokens, command.equals("PENDOWN"));
+            //case "SETPENCOLOR" -> new SetPenColorStatement(tokens);
+            //case "SETFILLCOLOR" -> new SetFillColorStatement(tokens);
+            //case "SETSCREENCOLOR" -> new SetScreenColorStatement(tokens);
+            //case "SETPENSIZE" -> new SetPenSizeStatement(tokens);
+            //case "RIPETI" -> new RepeatStatement(tokens);
+            default -> throw new UnknownCommandException(command);
+        };
+    }
+
+    private Statement getMoveStatement(List<Token> tokens, boolean backward) throws InvalidSyntaxException {
+        checkNumberOfArguments(tokens, 1);
+        Token firstArg = tokens.get(1);
+        checkArgumentNumber(firstArg);
+
+        int distance = Integer.parseInt(firstArg.text());
+        return new MoveStatement(distance, backward);
+    }
+
+    private Statement getAngleStatement(List<Token> tokens, boolean subtract) throws ParserException {
+        checkNumberOfArguments(tokens, 1);
+        Token firstArg = tokens.get(1);
+        checkArgumentNumber(firstArg);
+
+        int angleIncrement = Integer.parseInt(firstArg.text()) * (subtract ? -1 : 1);
+        return new IncrementAngleStatement(angleIncrement);
+    }
+
+    private Statement getSetDrawingStatement(List<Token> tokens, boolean draw) throws ParserException {
+        checkNumberOfArguments(tokens, 0);
+        return new SetDrawingStatement(draw);
+    }
+
+    private void checkNumberOfArguments(List<Token> tokens, int expected) throws InvalidSyntaxException {
+        int given = tokens.size() - 1;
+        if (given != expected) {
+            throw new InvalidSyntaxException(tokens.get(0).text().toUpperCase(), "takes " + expected + " arguments, but " + given + " were given");
+        }
+    }
+
+    private void checkArgumentNumber(Token token) throws InvalidSyntaxException {
+        if (!(token.type() instanceof NumberTokenType)) {
+            throw new InvalidSyntaxException(token, "is not a number");
+        }
     }
 }
