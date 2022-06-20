@@ -1,11 +1,11 @@
 package it.unicam.cs.pa.ma114763.logo;
 
-import it.unicam.cs.pa.ma114763.logo.statement.SetBackgroundColorStatement;
+import it.unicam.cs.pa.ma114763.logo.statement.SetColorStatement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUtils {
-    public static void assertColorStatement(SetBackgroundColorStatement statement, byte r, byte g, byte b, byte a) {
+    public static void assertColorStatement(SetColorStatement statement, byte r, byte g, byte b, byte a) {
         Color c = statement.color();
         assertEquals(r, c.getRed());
         assertEquals(g, c.getGreen());
