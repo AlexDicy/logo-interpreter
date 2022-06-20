@@ -29,6 +29,14 @@ public interface Canvas {
     Position2D getCurrentPosition();
 
     /**
+     * Sets the current position of the cursor.
+     *
+     * @param x the x coordinate of the new position
+     * @param y the y coordinate of the new position
+     */
+    void setCurrentPosition(int x, int y);
+
+    /**
      * Returns the current direction represented as an angle in degrees.
      * The angle is measured clockwise from the positive x-axis.
      * An angle of 0 means the direction is to the right.
@@ -88,9 +96,32 @@ public interface Canvas {
     void setDrawing(boolean drawing);
 
     /**
+     * Moves the cursor to the given position.
+     * Draws a line if {@link #isDrawing()} is true.
+     *
+     * @param x the x coordinate of the new position
+     * @param y the y coordinate of the new position
+     */
+    void moveTo(int x, int y);
+
+    /**
+     * Moves the cursor by the given distance.
+     * Draws a line if {@link #isDrawing()} is true.
+     *
+     * @param offsetX the distance to move in the x direction
+     * @param offsetY the distance to move in the y direction
+     */
+    void move(int offsetX, int offsetY);
+
+    /**
      * Returns a list of all shapes on the canvas, ordered by their appearance.
      *
      * @return every shape currently drawn on the canvas
      */
     List<Shape> getShapes();
+
+    /**
+     * Clears the canvas using the background color.
+     */
+    void clear();
 }
