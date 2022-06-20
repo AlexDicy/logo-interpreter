@@ -1,7 +1,10 @@
 package it.unicam.cs.pa.ma114763.logo;
 
 import it.unicam.cs.pa.ma114763.logo.statement.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,20 +14,27 @@ public class LogoProcessor implements Processor {
     @Override
     public void execute(List<Statement> statements, Canvas canvas) {
         for (Statement statement : statements) {
-            execute(statement, canvas);
+            List<Statement> generated = execute(statement, canvas);
+            // if the statement generated more statements, execute them
+            if (generated != null) {
+                execute(generated, canvas);
+            }
         }
     }
 
     @Override
-    public void execute(Statement statement, Canvas canvas) {
+    public @Nullable List<Statement> execute(@NotNull Statement statement, @NotNull Canvas canvas) {
         switch (statement) {
             case SetColorStatement s -> executeColorStatement(s, canvas);
+            case PositionStatement s -> executePositionStatement(s, canvas);
             case ClearScreenStatement s -> canvas.clear();
-            case HomeStatement s -> canvas.setCurrentPosition(0, 0);
-            case MoveStatement s -> executeMoveStatement(s, canvas);
-            case RepeatStatement s -> executeRepeatStatement(s, canvas);
+            case RepeatStatement s -> {
+                return executeRepeatStatement(s);
+            }
+            case SetDrawingStatement s -> canvas.setDrawing(s.draw());
             default -> throw new IllegalArgumentException("Unknown statement: " + statement);
         }
+        return null;
     }
 
     private void executeColorStatement(SetColorStatement statement, Canvas canvas) {
@@ -32,6 +42,14 @@ public class LogoProcessor implements Processor {
             case SetBackgroundColorStatement s -> canvas.setBackgroundColor(s.color());
             case SetFillColorStatement s -> canvas.setFillColor(s.color());
             case SetStrokeColorStatement s -> canvas.setStrokeColor(s.color());
+        }
+    }
+
+    private void executePositionStatement(PositionStatement statement, Canvas canvas) {
+        switch (statement) {
+            case HomeStatement s -> canvas.setCurrentPosition(0, 0);
+            case MoveStatement s -> executeMoveStatement(s, canvas);
+            case RotateAngleStatement s -> canvas.rotate(s.angleRotation());
         }
     }
 
@@ -47,9 +65,12 @@ public class LogoProcessor implements Processor {
         canvas.move(offsetX, offsetY);
     }
 
-    private void executeRepeatStatement(RepeatStatement s, Canvas canvas) {
+    private List<Statement> executeRepeatStatement(RepeatStatement s) {
+        int size = s.times() * s.statements().size();
+        List<Statement> statements = new ArrayList<>(size);
         for (int i = 0; i < s.times(); i++) {
-            execute(s.statements(), canvas);
+            statements.addAll(s.statements());
         }
+        return statements;
     }
 }

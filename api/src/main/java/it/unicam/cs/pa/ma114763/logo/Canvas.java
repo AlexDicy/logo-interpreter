@@ -54,6 +54,20 @@ public interface Canvas {
     double getCurrentDirection();
 
     /**
+     * Sets the current direction in degrees.
+     *
+     * @param angle the new direction in degrees
+     */
+    void setCurrentDirection(double angle);
+
+    /**
+     * Rotates the current direction by the given angle in degrees.
+     *
+     * @param angle the angle in degrees to rotate the direction
+     */
+    void rotate(double angle);
+
+    /**
      * @return the current stroke color
      */
     Color getStrokeColor();
