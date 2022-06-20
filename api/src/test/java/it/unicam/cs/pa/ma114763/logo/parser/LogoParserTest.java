@@ -14,7 +14,7 @@ class LogoParserTest {
     private final LogoParser parser = new LogoParser();
 
     @Test
-    void getTokens() throws InvalidCharactersException {
+    void testTokens() throws InvalidCharactersException {
         List<Token> tokens = getTokens("move 10 10.7");
         assertEquals(3, tokens.size());
         assertToken(tokens.get(0), "move", WordTokenType.class);
@@ -24,6 +24,7 @@ class LogoParserTest {
         assertThrows(InvalidCharactersException.class, () -> getTokens("mo1ve"));
         assertThrows(InvalidCharactersException.class, () -> getTokens("10A 10.7"));
         assertThrows(InvalidCharactersException.class, () -> getTokens("move 10 10,7"));
+        assertThrows(InvalidCharactersException.class, () -> getTokens("move -10"));
     }
 
     private List<Token> getTokens(String input) throws InvalidCharactersException {
