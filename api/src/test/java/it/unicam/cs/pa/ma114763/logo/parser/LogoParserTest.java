@@ -10,6 +10,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Lorenzo Lapucci
+ */
 class LogoParserTest {
     private final LogoParser parser = new LogoParser();
 

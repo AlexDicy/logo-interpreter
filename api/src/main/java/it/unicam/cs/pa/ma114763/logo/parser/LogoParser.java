@@ -13,6 +13,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Lorenzo Lapucci
+ */
 public class LogoParser implements Parser {
     private static final List<TokenType> types = List.of(
             new NumberTokenType(),

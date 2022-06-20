@@ -1,5 +1,8 @@
 package it.unicam.cs.pa.ma114763.logo;
 
+/**
+ * @author Lorenzo Lapucci
+ */
 public class RGBColor implements Color {
     private final byte red;
     private final byte green;

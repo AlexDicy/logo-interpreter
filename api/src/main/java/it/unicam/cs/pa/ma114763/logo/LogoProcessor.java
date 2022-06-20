@@ -7,6 +7,9 @@ import it.unicam.cs.pa.ma114763.logo.statement.SetStrokeColorStatement;
 
 import java.util.List;
 
+/**
+ * @author Lorenzo Lapucci
+ */
 public class LogoProcessor implements Processor {
     @Override
     public void execute(List<Statement> statements, Canvas canvas) {

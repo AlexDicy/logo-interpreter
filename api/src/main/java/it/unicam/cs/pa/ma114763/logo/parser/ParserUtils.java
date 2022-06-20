@@ -11,6 +11,9 @@ import it.unicam.cs.pa.ma114763.logo.parser.tokentype.WordTokenType;
 
 import java.util.List;
 
+/**
+ * @author Lorenzo Lapucci
+ */
 public class ParserUtils {
 
     /**

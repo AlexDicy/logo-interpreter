@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Lorenzo Lapucci
+ */
 public class LogoTokenizer implements Tokenizer {
 
     private final List<TokenType> types;
