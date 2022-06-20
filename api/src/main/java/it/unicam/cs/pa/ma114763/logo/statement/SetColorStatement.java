@@ -6,6 +6,6 @@ import it.unicam.cs.pa.ma114763.logo.Statement;
 /**
  * @author Lorenzo Lapucci
  */
-public interface SetColorStatement extends Statement {
+public sealed interface SetColorStatement extends Statement permits SetBackgroundColorStatement, SetFillColorStatement, SetStrokeColorStatement {
     Color color();
 }

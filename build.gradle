@@ -18,7 +18,12 @@ subprojects {
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     }
 
+    tasks.withType(JavaCompile).each {
+        it.options.compilerArgs.add('--enable-preview')
+    }
+
     test {
         useJUnitPlatform()
+        jvmArgs("--enable-preview")
     }
 }

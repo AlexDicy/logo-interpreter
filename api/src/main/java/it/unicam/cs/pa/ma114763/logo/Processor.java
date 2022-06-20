@@ -15,4 +15,12 @@ public interface Processor {
      * @param canvas     the canvas on which to execute the statements
      */
     void execute(List<Statement> statements, Canvas canvas);
+
+    /**
+     * Executes the statement on the given canvas.
+     *
+     * @param statement the statement to execute
+     * @param canvas    the canvas on which to execute the statement
+     */
+    void execute(Statement statement, Canvas canvas);
 }
