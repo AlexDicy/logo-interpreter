@@ -109,8 +109,8 @@ public class LogoParser implements Parser {
         Token firstArg = tokens.get(1);
         ParserUtils.checkArgumentNumber(firstArg);
 
-        int angleIncrement = Integer.parseInt(firstArg.text()) * (subtract ? -1 : 1);
-        return new IncrementAngleStatement(angleIncrement);
+        int angleRotation = Integer.parseInt(firstArg.text()) * (subtract ? -1 : 1);
+        return new RotateAngleStatement(angleRotation);
     }
 
     private Statement getClearScreenStatement(List<Token> tokens) throws ParserException {

@@ -12,21 +12,21 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class IncrementAngleStatementTest {
+class RotateAngleStatementTest {
 
     @Test
-    void testIncrementAngleStatement() throws ParserException {
+    void testRotateAngleStatement() throws ParserException {
         LogoParser parser = new LogoParser();
         List<Statement> statements = parser.parse("LEFT 67\nRIGHT 90");
         assertEquals(2, statements.size());
-        assertInstanceOf(IncrementAngleStatement.class, statements.get(0));
-        assertInstanceOf(IncrementAngleStatement.class, statements.get(1));
-        assertEquals(-67, ((IncrementAngleStatement) statements.get(0)).angleIncrement());
-        assertEquals(90, ((IncrementAngleStatement) statements.get(1)).angleIncrement());
+        assertInstanceOf(RotateAngleStatement.class, statements.get(0));
+        assertInstanceOf(RotateAngleStatement.class, statements.get(1));
+        assertEquals(-67, ((RotateAngleStatement) statements.get(0)).angleRotation());
+        assertEquals(90, ((RotateAngleStatement) statements.get(1)).angleRotation());
     }
 
     @Test
-    void testIncrementAngleStatementExceptions() {
+    void testRotateAngleStatementExceptions() {
         LogoParser parser = new LogoParser();
         assertThrows(InvalidSyntaxException.class, () -> parser.parse("LEFT"));
         assertThrows(InvalidSyntaxException.class, () -> parser.parse("LEFT ABC"));

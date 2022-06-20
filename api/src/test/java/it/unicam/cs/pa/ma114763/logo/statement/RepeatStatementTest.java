@@ -24,8 +24,8 @@ class RepeatStatementTest {
         assertEquals(4, innerStatements.size());
         assertInstanceOf(SetDrawingStatement.class, innerStatements.get(0));
         assertInstanceOf(SetDrawingStatement.class, innerStatements.get(1));
-        assertInstanceOf(IncrementAngleStatement.class, innerStatements.get(2));
-        assertEquals(-10, ((IncrementAngleStatement) innerStatements.get(2)).angleIncrement());
+        assertInstanceOf(RotateAngleStatement.class, innerStatements.get(2));
+        assertEquals(-10, ((RotateAngleStatement) innerStatements.get(2)).angleRotation());
         assertInstanceOf(HomeStatement.class, innerStatements.get(3));
     }
 
