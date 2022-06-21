@@ -2,6 +2,7 @@ package it.unicam.cs.pa.ma114763.logo;
 
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import it.unicam.cs.pa.ma114763.logo.shape.Shape;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,6 +149,7 @@ public abstract class LogoDrawing implements DrawingContext {
     }
 
     @Override
+    @MustBeInvokedByOverriders
     public void clear() {
         shapes.clear();
         currentShape = null;

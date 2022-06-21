@@ -25,4 +25,12 @@ public class FXDrawing extends LogoDrawing {
         // draw the line
         canvasCtx.strokeLine(line.start().getX(), line.start().getY(), line.end().getX(), line.end().getY());
     }
+
+    @Override
+    public void clear() {
+        super.clear();
+        canvasCtx.setFill(Utils.toFXPaint(getBackgroundColor()));
+        canvasCtx.fillRect(0, 0, getWidth(), getHeight());
+        canvasCtx.setFill(Utils.toFXPaint(getFillColor()));
+    }
 }
