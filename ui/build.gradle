@@ -1,9 +1,15 @@
 plugins {
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 javafx {
     version = "17.0.1"
     modules = [ 'javafx.controls' ]
+}
+
+mainClassName = 'it.unicam.cs.pa.ma114763.logo.ui.LogoUI'
+
+dependencies {
+    implementation(project(path: ':api'))
 }
