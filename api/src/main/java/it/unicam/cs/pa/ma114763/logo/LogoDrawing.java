@@ -23,7 +23,7 @@ public abstract class LogoDrawing implements DrawingContext {
     private Color fillColor = new RGBColor(255, 255, 255);
     private Color backgroundColor = new RGBColor(255, 255, 255);
 
-    private boolean isDrawing = false;
+    private boolean isDrawing = true;
 
     private final List<Shape> shapes = new ArrayList<>();
     /**
