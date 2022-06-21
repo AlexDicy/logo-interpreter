@@ -32,6 +32,7 @@ public class LogoProcessor implements Processor {
                 return executeRepeatStatement(s);
             }
             case SetDrawingStatement s -> drawing.setDrawing(s.draw());
+            case SetStrokeSizeStatement s -> drawing.setStrokeSize(s.size());
             default -> throw new IllegalArgumentException("Unknown statement: " + statement);
         }
         return null;

@@ -7,22 +7,22 @@ package it.unicam.cs.pa.ma114763.logo;
  */
 public interface Color {
     /**
-     * @return the red component of the color
+     * @return the red component of the color, between 0 and 255.
      */
-    byte getRed();
+    int getRed();
 
     /**
-     * @return the green component of the color
+     * @return the green component of the color, between 0 and 255.
      */
-    byte getGreen();
+    int getGreen();
 
     /**
-     * @return the blue component of the color
+     * @return the blue component of the color, between 0 and 255.
      */
-    byte getBlue();
+    int getBlue();
 
     /**
-     * @return the alpha component of the color
+     * @return the alpha component of the color, between 0 and 255.
      */
-    byte getAlpha();
+    int getAlpha();
 }

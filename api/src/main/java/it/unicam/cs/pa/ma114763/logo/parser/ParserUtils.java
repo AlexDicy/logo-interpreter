@@ -24,9 +24,9 @@ public class ParserUtils {
      * @throws ParserException if the list of tokens is not valid
      */
     public static Color getColor(List<Token> tokens) throws ParserException {
-        byte red = checkValidByte(tokens.get(1));
-        byte green = checkValidByte(tokens.get(2));
-        byte blue = checkValidByte(tokens.get(3));
+        int red = checkValidByte(tokens.get(1));
+        int green = checkValidByte(tokens.get(2));
+        int blue = checkValidByte(tokens.get(3));
 
         if (tokens.size() == 5) {
             return new RGBColor(red, green, blue, checkValidByte(tokens.get(4)));
@@ -146,12 +146,16 @@ public class ParserUtils {
      * @throws InvalidSyntaxException if the token is not a number or if its value is not
      *                                between <code>0</code> and <code>255</code>
      */
-    public static byte checkValidByte(Token token) throws InvalidSyntaxException {
+    public static int checkValidByte(Token token) throws InvalidSyntaxException {
         checkArgumentNumber(token);
         try {
-            return Byte.parseByte(token.text());
+            int value = Integer.parseInt(token.text());
+            if (value < 0 || value > 255) {
+                throw new InvalidSyntaxException(token, "is not a valid range for a byte, must be between 0 and 255");
+            }
+            return value;
         } catch (NumberFormatException e) {
-            throw new InvalidSyntaxException(token, "is not a valid byte, must be between 0 and 255");
+            throw new InvalidSyntaxException(token, "is not a valid byte, must be a number between 0 and 255");
         }
     }
 }

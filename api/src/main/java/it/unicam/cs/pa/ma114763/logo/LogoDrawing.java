@@ -17,9 +17,10 @@ public abstract class LogoDrawing implements DrawingContext {
     private Position2D position = new Point(0, 0);
     double direction;
 
-    private Color stokeColor = new RGBColor((byte) 0, (byte) 0, (byte) 0);
-    private Color fillColor = new RGBColor((byte) 255, (byte) 255, (byte) 255);
-    private Color backgroundColor = new RGBColor((byte) 255, (byte) 255, (byte) 255);
+    private int strokeSize = 1;
+    private Color stokeColor = new RGBColor(0, 0, 0);
+    private Color fillColor = new RGBColor(255, 255, 255);
+    private Color backgroundColor = new RGBColor(255, 255, 255);
 
     private boolean isDrawing = false;
 
@@ -71,6 +72,16 @@ public abstract class LogoDrawing implements DrawingContext {
     public void rotate(double angle) {
         direction += angle;
         direction %= 360;
+    }
+
+    @Override
+    public int getStrokeSize() {
+        return strokeSize;
+    }
+
+    @Override
+    public void setStrokeSize(int size) {
+        strokeSize = size;
     }
 
     @Override

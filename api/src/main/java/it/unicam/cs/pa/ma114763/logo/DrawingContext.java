@@ -70,6 +70,18 @@ public interface DrawingContext {
     void rotate(double angle);
 
     /**
+     * @return the current stroke size
+     */
+    int getStrokeSize();
+
+    /**
+     * Sets the size of the strokes.
+     *
+     * @param size the new size of the strokes
+     */
+    void setStrokeSize(int size);
+
+    /**
      * @return the current stroke color
      */
     Color getStrokeColor();

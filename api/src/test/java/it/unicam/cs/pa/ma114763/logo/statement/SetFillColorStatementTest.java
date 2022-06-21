@@ -24,8 +24,8 @@ class SetFillColorStatementTest {
         assertEquals(2, statements.size());
         assertInstanceOf(SetFillColorStatement.class, statements.get(0));
         assertInstanceOf(SetFillColorStatement.class, statements.get(1));
-        TestUtils.assertColorStatement((SetFillColorStatement) statements.get(0), (byte) 0, (byte) 0, (byte) 0, (byte) 255);
-        TestUtils.assertColorStatement((SetFillColorStatement) statements.get(1), (byte) 10, (byte) 20, (byte) 30, (byte) 67);
+        TestUtils.assertColorStatement((SetFillColorStatement) statements.get(0), 0, 0, 0, 255);
+        TestUtils.assertColorStatement((SetFillColorStatement) statements.get(1), 10, 20, 30, 67);
     }
 
     @Test
