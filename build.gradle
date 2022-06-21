@@ -22,6 +22,10 @@ subprojects {
         it.options.compilerArgs.add('--enable-preview')
     }
 
+    tasks.withType(JavaExec) {
+        jvmArgs('--enable-preview')
+    }
+
     test {
         useJUnitPlatform()
         jvmArgs("--enable-preview")
