@@ -125,7 +125,7 @@ public abstract class LogoDrawing implements DrawingContext {
     }
 
     @Override
-    public void moveTo(int x, int y) {
+    public void moveTo(double x, double y) {
         Position2D newPosition = getSafePoint(x, y);
         if (isDrawing) {
             addLine(position, newPosition);
@@ -155,7 +155,7 @@ public abstract class LogoDrawing implements DrawingContext {
 
     protected abstract void drawLine(Line line);
 
-    protected Position2D getSafePoint(int x, int y) {
+    protected Position2D getSafePoint(double x, double y) {
         return new Point(Math.max(0, Math.min(x, width)), Math.max(0, Math.min(y, height)));
     }
 }

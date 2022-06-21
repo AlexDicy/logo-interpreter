@@ -33,6 +33,10 @@ public class LogoUI extends Application {
                 FORWARD 80
                 HOME
                 FORWARD 20
+                SETPENCOLOR 0 127 255 127
+                
+                
+                ripeti 8 [right 45 ripeti 6 [ripeti 90 [forward 2 right 2] right 90]]
                 """;
 
         Canvas canvas = new Canvas(640, 480);

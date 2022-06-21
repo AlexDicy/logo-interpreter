@@ -7,7 +7,7 @@ package it.unicam.cs.pa.ma114763.logo;
  * @author Lorenzo Lapucci
  */
 public interface Position2D {
-    int getX();
+    double getX();
 
-    int getY();
+    double getY();
 }

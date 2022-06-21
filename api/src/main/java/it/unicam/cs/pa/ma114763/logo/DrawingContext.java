@@ -130,7 +130,7 @@ public interface DrawingContext {
      * @param x the x coordinate of the new position
      * @param y the y coordinate of the new position
      */
-    void moveTo(int x, int y);
+    void moveTo(double x, double y);
 
     /**
      * Moves the cursor by the given distance.
@@ -139,7 +139,7 @@ public interface DrawingContext {
      * @param offsetX the distance to move in the x direction
      * @param offsetY the distance to move in the y direction
      */
-    default void move(int offsetX, int offsetY) {
+    default void move(double offsetX, double offsetY) {
         moveTo(getCurrentPosition().getX() + offsetX, getCurrentPosition().getY() + offsetY);
     }
 
