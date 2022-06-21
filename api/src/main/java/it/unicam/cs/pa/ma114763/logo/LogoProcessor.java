@@ -66,7 +66,7 @@ public class LogoProcessor implements Processor {
         }
         // calculate the x and y coordinates of the new position
         double offsetX = Math.cos(Math.toRadians(angle)) * distance;
-        double offsetY = Math.sin(Math.toRadians(angle)) * distance;
+        double offsetY = -Math.sin(Math.toRadians(angle)) * distance; // negative because y increases upwards
         drawing.move(offsetX, offsetY);
     }
 

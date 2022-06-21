@@ -15,6 +15,10 @@ public abstract class LogoDrawing implements DrawingContext {
     private int height;
 
 
+    /**
+     * Holds the current position in the drawing
+     * A position of <code>(0, 0)</code> is the bottom-left corner of the drawing
+     */
     private Position2D position;
     double direction;
 
@@ -27,7 +31,7 @@ public abstract class LogoDrawing implements DrawingContext {
 
     private final List<Shape> shapes = new ArrayList<>();
     /**
-     * Hold the current shape being drawn.
+     * Holds the current shape being drawn.
      * If null, no shape is being drawn.
      * <p>
      * Used to store drawn lines to later decide if the shape is closed.

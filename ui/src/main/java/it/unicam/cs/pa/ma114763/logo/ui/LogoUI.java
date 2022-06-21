@@ -19,24 +19,42 @@ public class LogoUI extends Application {
     @Override
     public void start(Stage stage) throws ParserException {
         String program = """
-                PENDOWN
-                FORWARD 10
-                PENUP
-                FORWARD 20
-                PENDOWN
-                FORWARD 10
-                RIGHT 90
-                FORWARD 40
-                LEFT 315
-                SETPENCOLOR 255 127 0
-                BACKWARD 40
+                FORWARD 130
+                RIGHT 148
+                FORWARD 153
+                RIGHT 122
                 FORWARD 80
+                right 90
+                
+                SETPENCOLOR 255 127 0 127
                 HOME
-                FORWARD 20
+                PENUP
+                RIGHT 180
+                FORWARD 50
+                RIGHT 90
+                FORWARD 80
+                LEFT 270
+                PENDOWN
+                
+                RIPETI 36[RIPETI 90 [FORWARD 5 RIGHT 4] RIGHT 10]
+
                 SETPENCOLOR 0 127 255 127
+                HOME
+                PENUP
+                RIGHT 0
+                FORWARD 140
+                LEFT 0
+                PENDOWN
                 
+                RIPETI 8 [right 45 RIPETI 6 [RIPETI 90 [FORWARD 2 RIGHT 2] RIGHT 90]]
                 
-                ripeti 8 [right 45 ripeti 6 [ripeti 90 [forward 2 right 2] right 90]]
+                PENUP
+                HOME
+                RIGHT 180
+                FORWARD 220
+                PENDOWN
+                
+                RIPETI 18 [RIPETI 5 [RIGHT 40 FORWARD 100 RIGHT 120] RIGHT 20]
                 """;
 
         Canvas canvas = new Canvas(640, 480);
