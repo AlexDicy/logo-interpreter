@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Lorenzo Lapucci
  */
-public interface Canvas {
+public interface DrawingContext {
     /**
      * Returns the horizontal size of the canvas.
      *

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Lorenzo Lapucci
  */
-public abstract class LogoCanvas implements Canvas {
+public abstract class LogoDrawing implements DrawingContext {
     private int width;
     private int height;
 
@@ -32,7 +32,7 @@ public abstract class LogoCanvas implements Canvas {
      */
     private List<Line> currentShape = null;
 
-    public LogoCanvas(int width, int height) {
+    public LogoDrawing(int width, int height) {
         this.width = width;
         this.height = height;
     }
