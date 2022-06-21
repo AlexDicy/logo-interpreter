@@ -84,16 +84,16 @@ public class LogoParser implements Parser {
 
     private Statement getStatement(String command, List<Token> tokens) throws ParserException {
         return switch (command) {
-            case "FORWARD", "BACKWARD" -> getMoveStatement(tokens, command.equals("BACKWARD"));
-            case "LEFT", "RIGHT" -> getAngleStatement(tokens, command.equals("LEFT"));
-            case "CLEARSCREEN" -> getClearScreenStatement(tokens);
+            case "FORWARD", "BACKWARD", "FD", "BK" -> getMoveStatement(tokens, command.equals("BACKWARD") || command.equals("BK"));
+            case "LEFT", "RIGHT", "LT", "RT" -> getAngleStatement(tokens, command.equals("LEFT") || command.equals("LT"));
+            case "CLEARSCREEN", "CS" -> getClearScreenStatement(tokens);
             case "HOME" -> getHomeStatement(tokens);
-            case "PENUP", "PENDOWN" -> getSetDrawingStatement(tokens, command.equals("PENDOWN"));
-            case "SETPENCOLOR" -> getSetStrokeColorStatement(tokens);
-            case "SETFILLCOLOR" -> getSetFillColorStatement(tokens);
-            case "SETSCREENCOLOR" -> getSetBackgroundColorStatement(tokens);
+            case "PENUP", "PENDOWN", "PU", "PD" -> getSetDrawingStatement(tokens, command.equals("PENDOWN") || command.equals("PD"));
+            case "SETPENCOLOR", "SETPC" -> getSetStrokeColorStatement(tokens);
+            case "SETFILLCOLOR", "SETFC" -> getSetFillColorStatement(tokens);
+            case "SETSCREENCOLOR", "SETSC" -> getSetBackgroundColorStatement(tokens);
             case "SETPENSIZE" -> getSetStrokeSizeStatement(tokens);
-            case "RIPETI" -> getRepeatStatement(tokens);
+            case "RIPETI", "REPEAT" -> getRepeatStatement(tokens);
             default -> throw new UnknownCommandException(command);
         };
     }
