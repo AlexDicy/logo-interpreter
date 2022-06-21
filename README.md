@@ -1,0 +1,37 @@
+# logo-pa
+Logo language interpreter - University project
+
+#### Example output
+![output example](https://user-images.githubusercontent.com/11839341/174804232-4eaa911c-d7b6-42ff-b142-dc99a90fc7b3.png)
+#### Example input
+```css
+# Figura 1
+SETPENCOLOR 255 127 0 127
+HOME
+PENUP
+RIGHT 180
+FORWARD 50
+RIGHT 90
+FORWARD 80
+LEFT 270
+PENDOWN
+RIPETI 36[RIPETI 90 [FORWARD 5 RIGHT 4] RIGHT 10]
+
+# Figura 2
+SETPENCOLOR 0 127 255 127
+HOME
+PENUP
+RIGHT 0
+FORWARD 140
+LEFT 0
+PENDOWN
+RIPETI 8 [RIGHT 45 RIPETI 6 [RIPETI 90 [FORWARD 2 RIGHT 2] RIGHT 90]]
+
+# Figura 3
+PENUP
+HOME
+RIGHT 180
+FORWARD 220
+PENDOWN
+RIPETI 18 [RIPETI 5 [RIGHT 40 FORWARD 100 RIGHT 120] RIGHT 20]
+```
