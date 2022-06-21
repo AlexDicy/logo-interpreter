@@ -15,7 +15,7 @@ public abstract class LogoDrawing implements DrawingContext {
     private int height;
 
 
-    private Position2D position = new Point(0, 0);
+    private Position2D position;
     double direction;
 
     private int strokeSize = 1;
@@ -37,6 +37,7 @@ public abstract class LogoDrawing implements DrawingContext {
     public LogoDrawing(int width, int height) {
         this.width = width;
         this.height = height;
+        this.position = new Point(width / 2.0, height / 2.0);
     }
 
     @Override
