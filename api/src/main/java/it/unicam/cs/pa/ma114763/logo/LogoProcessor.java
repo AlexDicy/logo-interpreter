@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class LogoProcessor implements Processor {
     @Override
-    public void execute(List<Statement> statements, DrawingContext drawing) {
+    public void execute(@NotNull List<Statement> statements, @NotNull DrawingContext drawing) {
         for (Statement statement : statements) {
             List<Statement> generated = execute(statement, drawing);
             // if the statement generated more statements, execute them
