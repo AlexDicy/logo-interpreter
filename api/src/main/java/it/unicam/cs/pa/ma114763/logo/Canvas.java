@@ -1,5 +1,7 @@
 package it.unicam.cs.pa.ma114763.logo;
 
+import it.unicam.cs.pa.ma114763.logo.shape.Shape;
+
 import java.util.List;
 
 /**
@@ -125,7 +127,9 @@ public interface Canvas {
      * @param offsetX the distance to move in the x direction
      * @param offsetY the distance to move in the y direction
      */
-    void move(int offsetX, int offsetY);
+    default void move(int offsetX, int offsetY) {
+        moveTo(getCurrentPosition().getX() + offsetX, getCurrentPosition().getY() + offsetY);
+    }
 
     /**
      * Returns a list of all shapes on the canvas, ordered by their appearance.

@@ -47,7 +47,11 @@ public class LogoProcessor implements Processor {
 
     private void executePositionStatement(PositionStatement statement, Canvas canvas) {
         switch (statement) {
-            case HomeStatement s -> canvas.setCurrentPosition(0, 0);
+            case HomeStatement s -> {
+                int x = canvas.getWidth() / 2;
+                int y = canvas.getHeight() / 2;
+                canvas.setCurrentPosition(x, y);
+            }
             case MoveStatement s -> executeMoveStatement(s, canvas);
             case RotateAngleStatement s -> canvas.rotate(s.angleRotation());
         }
