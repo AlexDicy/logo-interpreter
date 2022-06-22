@@ -16,6 +16,6 @@ public record Line(Position2D start, Position2D end, int size, Color color) impl
     public void draw(DrawingContext ctx) {
         ctx.setStrokeSize(size);
         ctx.setStrokeColor(color);
-        ctx.strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
+        ctx.getDrawingCanvas().strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
     }
 }

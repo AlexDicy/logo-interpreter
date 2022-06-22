@@ -146,11 +146,8 @@ public abstract class LogoDrawing implements DrawingContext {
         Line line = new Line(start, end, strokeSize, stokeColor);
         currentShape.add(line);
         shapes.add(line);
-        strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
+        getDrawingCanvas().strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
     }
-
-    @Override
-    public abstract void strokeLine(double startX, double startY, double endX, double endY);
 
     @Override
     public List<Shape> getShapes() {
@@ -164,7 +161,15 @@ public abstract class LogoDrawing implements DrawingContext {
         currentShape = null;
     }
 
+    protected double getSafeX(double x) {
+        return Math.max(0, Math.min(x, width));
+    }
+
+    protected double getSafeY(double y) {
+        return Math.max(0, Math.min(y, height));
+    }
+
     protected Position2D getSafePoint(double x, double y) {
-        return new Point(Math.max(0, Math.min(x, width)), Math.max(0, Math.min(y, height)));
+        return new Point(getSafeX(x), getSafeY(y));
     }
 }

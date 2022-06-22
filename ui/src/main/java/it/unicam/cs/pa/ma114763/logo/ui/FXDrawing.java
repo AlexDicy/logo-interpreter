@@ -1,8 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
-import it.unicam.cs.pa.ma114763.logo.Color;
-import it.unicam.cs.pa.ma114763.logo.DrawingContext;
-import it.unicam.cs.pa.ma114763.logo.LogoDrawing;
+import it.unicam.cs.pa.ma114763.logo.*;
 import it.unicam.cs.pa.ma114763.logo.shape.Shape;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,7 +15,7 @@ import java.util.List;
  *
  * @author Lorenzo Lapucci
  */
-public class FXDrawing extends LogoDrawing {
+public class FXDrawing extends LogoDrawing implements DrawingCanvas {
     private final GraphicsContext canvasCtx;
 
     public FXDrawing(Canvas canvas, int width, int height) {
@@ -36,13 +34,26 @@ public class FXDrawing extends LogoDrawing {
         canvasCtx.setStroke(Utils.toFXPaint(getStrokeColor()));
         canvasCtx.setLineWidth(getStrokeSize());
         // convert the coordinates to the system used by the canvas and draw the line
-        canvasCtx.strokeLine(startX, getHeight() - startY, endX, getHeight() - endY);
+        canvasCtx.strokeLine(getSafeX(startX), getHeight() - getSafeY(startY), getSafeX(endX), getHeight() - getSafeY(endY));
+    }
+
+    @Override
+    public void fillPolygon(List<Position2D> points) {
+        canvasCtx.setFill(Utils.toFXPaint(getFillColor()));
+        double[] xPoints = points.stream().mapToDouble(p -> getSafeX(p.getX())).toArray();
+        double[] yPoints = points.stream().mapToDouble(p -> getHeight() - getSafeY(p.getY())).toArray();
+        canvasCtx.fillPolygon(xPoints, yPoints, points.size());
     }
 
     @Override
     public void clear() {
         super.clear();
         repaint();
+    }
+
+    @Override
+    public DrawingCanvas getDrawingCanvas() {
+        return this;
     }
 
     private void repaint() {
