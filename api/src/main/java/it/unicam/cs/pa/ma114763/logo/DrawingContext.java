@@ -5,7 +5,7 @@ import it.unicam.cs.pa.ma114763.logo.shape.Shape;
 import java.util.List;
 
 /**
- * A Canvas holds information about the drawing, such as size, current position,
+ * A {@link DrawingContext} holds information about the drawing, such as size, current position,
  * current color, shapes, and the background color.
  *
  * @author Lorenzo Lapucci
