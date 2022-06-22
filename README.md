@@ -1,8 +1,8 @@
-# logo-pa
+# Logo Interpreter
 Logo language interpreter - University project
 
 #### Example output
-![output example](https://user-images.githubusercontent.com/11839341/174804232-4eaa911c-d7b6-42ff-b142-dc99a90fc7b3.png)
+![output example](https://user-images.githubusercontent.com/11839341/175091608-f598db64-9b4a-48c0-b092-93f418987657.png)
 #### Example input
 ```css
 # Figura 1
