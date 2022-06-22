@@ -1,6 +1,7 @@
 package it.unicam.cs.pa.ma114763.logo;
 
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
+import it.unicam.cs.pa.ma114763.logo.shape.Polygon;
 import it.unicam.cs.pa.ma114763.logo.shape.Shape;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
@@ -140,13 +141,36 @@ public abstract class LogoDrawing implements DrawingContext {
     }
 
     private void addLine(Position2D start, Position2D end) {
-        if (currentShape == null) {
+        // start a new shape if no shape is being drawn or if the last line added is not part of the shape
+        if (currentShape == null || currentShape.size() > 0 && !currentShape.get(currentShape.size() - 1).end().isSamePosition(start)) {
             currentShape = new ArrayList<>();
         }
         Line line = new Line(start, end, strokeSize, stokeColor);
         currentShape.add(line);
         shapes.add(line);
+        analyzeClosedShape();
         getDrawingCanvas().strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
+    }
+
+    /**
+     * If the last line added to the {@link #currentShape} ends
+     * at the start of the first line, it means that the shape is closed.
+     * <p>
+     * If the shape is closed, its lines are replaced in the {@link #shapes} list
+     * with a {@link Polygon} and the {@link #currentShape} is set to null.
+     */
+    private void analyzeClosedShape() {
+        if (currentShape.size() > 2) {
+            Line firstLine = currentShape.get(0);
+            Line lastLine = currentShape.get(currentShape.size() - 1);
+            if (lastLine.end().isSamePosition(firstLine.start())) {
+                Polygon polygon = new Polygon(fillColor, currentShape);
+                shapes.subList(shapes.size() - currentShape.size(), shapes.size()).clear(); // changes in the sublist are reflected in the original list
+                shapes.add(polygon);
+                currentShape = null;
+                polygon.draw(this);
+            }
+        }
     }
 
     @Override
