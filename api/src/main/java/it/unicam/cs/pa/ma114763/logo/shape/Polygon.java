@@ -23,7 +23,7 @@ public record Polygon(Color fillColor, List<Line> strokes) implements Shape {
         Line previousStroke = strokes.get(0);
         for (int i = 1; i <= strokes.size(); i++) {
             Line currentStroke = strokes.get(i % strokes.size());
-            if (!currentStroke.start().equals(previousStroke.end())) {
+            if (!currentStroke.start().isSamePosition(previousStroke.end())) {
                 throw new IllegalArgumentException("Every stroke must start where the previous one ends");
             }
             previousStroke = currentStroke;
