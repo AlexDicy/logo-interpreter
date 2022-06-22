@@ -143,7 +143,7 @@ public abstract class LogoDrawing implements DrawingContext {
         if (currentShape == null) {
             currentShape = new ArrayList<>();
         }
-        Line line = new Line(start, end);
+        Line line = new Line(start, end, strokeSize, stokeColor);
         currentShape.add(line);
         shapes.add(line);
         strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
