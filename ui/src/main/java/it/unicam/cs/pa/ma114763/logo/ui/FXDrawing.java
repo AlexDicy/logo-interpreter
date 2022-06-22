@@ -1,8 +1,8 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
+import it.unicam.cs.pa.ma114763.logo.Color;
 import it.unicam.cs.pa.ma114763.logo.DrawingContext;
 import it.unicam.cs.pa.ma114763.logo.LogoDrawing;
-import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -23,23 +23,26 @@ public class FXDrawing extends LogoDrawing {
     }
 
     @Override
-    protected void drawLine(Line line) {
-        // set all the properties
+    public void setBackgroundColor(Color color) {
+        super.setBackgroundColor(color);
+        repaintBackground();
+    }
+
+    @Override
+    public void strokeLine(double startX, double startY, double endX, double endY) {
         canvasCtx.setStroke(Utils.toFXPaint(getStrokeColor()));
-        canvasCtx.setFill(Utils.toFXPaint(getFillColor()));
         canvasCtx.setLineWidth(getStrokeSize());
-        // convert the coordinates to the system used by the canvas
-        double startX = line.start().getX();
-        double startY = getHeight() - line.start().getY();
-        double endX = line.end().getX();
-        double endY = getHeight() - line.end().getY();
-        // draw the line
-        canvasCtx.strokeLine(startX, startY, endX, endY);
+        // convert the coordinates to the system used by the canvas and draw the line
+        canvasCtx.strokeLine(startX, getHeight() - startY, endX, getHeight() - endY);
     }
 
     @Override
     public void clear() {
         super.clear();
+        repaintBackground();
+    }
+
+    private void repaintBackground() {
         canvasCtx.setFill(Utils.toFXPaint(getBackgroundColor()));
         canvasCtx.fillRect(0, 0, getWidth(), getHeight());
         canvasCtx.setFill(Utils.toFXPaint(getFillColor()));

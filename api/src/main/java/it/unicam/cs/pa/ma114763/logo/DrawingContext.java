@@ -144,6 +144,16 @@ public interface DrawingContext {
     }
 
     /**
+     * Draws a line from the current position to the given position.
+     *
+     * @param startX the x coordinate of the starting point
+     * @param startY the y coordinate of the starting point
+     * @param endX   the x coordinate of the ending point
+     * @param endY   the y coordinate of the ending point
+     */
+    void strokeLine(double startX, double startY, double endX, double endY);
+
+    /**
      * Returns a list of all shapes on the canvas, ordered by their appearance.
      *
      * @return every shape currently drawn on the canvas

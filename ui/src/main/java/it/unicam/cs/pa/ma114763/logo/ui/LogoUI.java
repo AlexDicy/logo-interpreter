@@ -1,17 +1,17 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
 import it.unicam.cs.pa.ma114763.logo.LogoProcessor;
+import it.unicam.cs.pa.ma114763.logo.RGBColor;
 import it.unicam.cs.pa.ma114763.logo.Statement;
 import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
+import it.unicam.cs.pa.ma114763.logo.shape.Shape;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -34,22 +34,33 @@ public class LogoUI extends Application {
         List<Statement> statements = parser.parse(program);
         LogoProcessor processor = new LogoProcessor();
         FXDrawing drawing = new FXDrawing(canvas, width, height);
+        processor.execute(statements, drawing);
 
-        LinkedList<Statement> queue = new LinkedList<>(statements);
+        canvas.setOnMouseClicked(event -> {
+            drawing.setBackgroundColor(new RGBColor(0, 0, 0));
+            drawing.setStrokeColor(new RGBColor(255, 255, 255));
 
-        scene.setOnKeyPressed(event -> {
-            if (queue.isEmpty() || event.getCode() != KeyCode.SPACE) {
-                return;
-            }
-            // execute and add result to the head of the queue
-            Statement statement = queue.removeFirst();
-            System.out.println("Executing: " + statement);
-            List<Statement> result = processor.execute(statement, drawing);
-            if (result != null) {
-                // add results to the head of the queue
-                queue.addAll(0, result);
+            List<Shape> shapes = drawing.getShapes();
+            for (Shape shape : shapes) {
+                shape.draw(drawing);
             }
         });
+
+//        LinkedList<Statement> queue = new LinkedList<>(statements);
+//
+//        scene.setOnKeyPressed(event -> {
+//            if (queue.isEmpty() || event.getCode() != KeyCode.SPACE) {
+//                return;
+//            }
+//            // execute and add result to the head of the queue
+//            Statement statement = queue.removeFirst();
+//            System.out.println("Executing: " + statement);
+//            List<Statement> result = processor.execute(statement, drawing);
+//            if (result != null) {
+//                // add results to the head of the queue
+//                queue.addAll(0, result);
+//            }
+//        });
     }
 
     public static void main(String[] args) {
