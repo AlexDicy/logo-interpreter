@@ -1,7 +1,7 @@
 package it.unicam.cs.pa.ma114763.logo.parser;
 
 import it.unicam.cs.pa.ma114763.logo.Color;
-import it.unicam.cs.pa.ma114763.logo.Statement;
+import it.unicam.cs.pa.ma114763.logo.statement.Statement;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidCharactersException;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidSyntaxException;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;

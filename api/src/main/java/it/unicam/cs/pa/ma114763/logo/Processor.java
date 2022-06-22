@@ -1,5 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo;
 
+import it.unicam.cs.pa.ma114763.logo.statement.Statement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -1,6 +1,5 @@
 package it.unicam.cs.pa.ma114763.logo.statement;
 
-import it.unicam.cs.pa.ma114763.logo.Statement;
 import it.unicam.cs.pa.ma114763.logo.TestUtils;
 import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidCharactersException;
