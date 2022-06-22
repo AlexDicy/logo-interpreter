@@ -36,7 +36,7 @@ public interface DrawingContext {
      * @param x the x coordinate of the new position
      * @param y the y coordinate of the new position
      */
-    void setCurrentPosition(int x, int y);
+    void setCurrentPosition(double x, double y);
 
     /**
      * Returns the current direction represented as an angle in degrees.

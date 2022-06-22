@@ -60,7 +60,7 @@ public abstract class LogoDrawing implements DrawingContext {
     }
 
     @Override
-    public void setCurrentPosition(int x, int y) {
+    public void setCurrentPosition(double x, double y) {
         position = new Point(x, y);
     }
 
@@ -145,6 +145,7 @@ public abstract class LogoDrawing implements DrawingContext {
         }
         Line line = new Line(start, end);
         currentShape.add(line);
+        shapes.add(line);
         drawLine(line);
     }
 

@@ -49,8 +49,8 @@ public class LogoProcessor implements Processor {
     private void executePositionStatement(PositionStatement statement, DrawingContext drawing) {
         switch (statement) {
             case HomeStatement s -> {
-                int x = drawing.getWidth() / 2;
-                int y = drawing.getHeight() / 2;
+                double x = drawing.getWidth() / 2.0;
+                double y = drawing.getHeight() / 2.0;
                 drawing.setCurrentPosition(x, y);
             }
             case MoveStatement s -> executeMoveStatement(s, drawing);
