@@ -3,8 +3,11 @@ package it.unicam.cs.pa.ma114763.logo.ui;
 import it.unicam.cs.pa.ma114763.logo.Color;
 import it.unicam.cs.pa.ma114763.logo.DrawingContext;
 import it.unicam.cs.pa.ma114763.logo.LogoDrawing;
+import it.unicam.cs.pa.ma114763.logo.shape.Shape;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+
+import java.util.List;
 
 /**
  * Wrapper for the JavaFX Canvas.
@@ -25,7 +28,7 @@ public class FXDrawing extends LogoDrawing {
     @Override
     public void setBackgroundColor(Color color) {
         super.setBackgroundColor(color);
-        repaintBackground();
+        repaint();
     }
 
     @Override
@@ -39,12 +42,16 @@ public class FXDrawing extends LogoDrawing {
     @Override
     public void clear() {
         super.clear();
-        repaintBackground();
+        repaint();
     }
 
-    private void repaintBackground() {
+    private void repaint() {
         canvasCtx.setFill(Utils.toFXPaint(getBackgroundColor()));
         canvasCtx.fillRect(0, 0, getWidth(), getHeight());
         canvasCtx.setFill(Utils.toFXPaint(getFillColor()));
+        List<Shape> shapes = getShapes();
+        for (Shape shape : shapes) {
+            shape.draw(this);
+        }
     }
 }
