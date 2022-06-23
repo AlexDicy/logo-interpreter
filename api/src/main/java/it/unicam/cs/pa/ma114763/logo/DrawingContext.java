@@ -159,4 +159,24 @@ public interface DrawingContext {
      * @return the {@link DrawingCanvas} that this context is associated with
      */
     DrawingCanvas getDrawingCanvas();
+
+    /**
+     * Converts the drawing and its content to a string.
+     *
+     * @return the string representation of the drawing
+     */
+    default String getDrawingAsString() {
+        StringBuilder sb = new StringBuilder();
+        Color bg = getBackgroundColor();
+        sb.append("SIZE ").append(getWidth()).append(" ").append(getHeight()).append(" ")
+                .append(bg.getRed()).append(" ").append(bg.getGreen()).append(" ").append(bg.getBlue());
+        if (!bg.isOpaque()) {
+            sb.append(" ").append(bg.getAlpha());
+        }
+        sb.append("\n");
+        for (Shape shape : getShapes()) {
+            sb.append(shape.serialize()).append("\n");
+        }
+        return sb.toString();
+    }
 }

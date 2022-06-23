@@ -3,15 +3,16 @@ package it.unicam.cs.pa.ma114763.logo.ui;
 import it.unicam.cs.pa.ma114763.logo.LogoProcessor;
 import it.unicam.cs.pa.ma114763.logo.Point;
 import it.unicam.cs.pa.ma114763.logo.RGBColor;
+import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
+import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import it.unicam.cs.pa.ma114763.logo.shape.Polygon;
 import it.unicam.cs.pa.ma114763.logo.statement.Statement;
-import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
-import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -23,8 +24,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class LogoUI extends Application {
     @Override
     public void start(Stage stage) throws ParserException {
-        int width = 800;
-        int height = 600;
+        final int width = 800;
+        final int height = 600;
+        final int textAreaHeight = 400;
 
         String program = """
                 setpencolor 121 153 237
@@ -44,7 +46,11 @@ public class LogoUI extends Application {
                 """;
 
         Canvas canvas = new Canvas(width, height);
-        Scene scene = new Scene(new StackPane(canvas), width, height);
+        TextArea textArea = new TextArea();
+        textArea.setPrefWidth(width);
+        textArea.setPrefHeight(textAreaHeight);
+        textArea.setWrapText(true);
+        Scene scene = new Scene(new VBox(canvas, textArea), width, height + textAreaHeight);
         stage.setScene(scene);
         stage.show();
 
@@ -53,6 +59,8 @@ public class LogoUI extends Application {
         LogoProcessor processor = new LogoProcessor();
         FXDrawing drawing = new FXDrawing(canvas, width, height);
         processor.execute(statements, drawing);
+
+        textArea.setText(drawing.getDrawingAsString());
 
         AtomicBoolean flag = new AtomicBoolean(false);
 
@@ -75,6 +83,7 @@ public class LogoUI extends Application {
             );
             Polygon polygon = new Polygon(new RGBColor(255, 255, 255, 127), strokes);
             polygon.draw(drawing);
+            textArea.setText(drawing.getDrawingAsString());
         });
 
 //        LinkedList<Statement> queue = new LinkedList<>(statements);
