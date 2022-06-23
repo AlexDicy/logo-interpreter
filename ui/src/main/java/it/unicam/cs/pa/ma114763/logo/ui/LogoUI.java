@@ -1,17 +1,19 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
+import it.unicam.cs.pa.ma114763.logo.LogoInterpreter;
 import it.unicam.cs.pa.ma114763.logo.LogoProcessor;
-import it.unicam.cs.pa.ma114763.logo.Point;
-import it.unicam.cs.pa.ma114763.logo.RGBColor;
+import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
+import it.unicam.cs.pa.ma114763.logo.drawing.Point;
+import it.unicam.cs.pa.ma114763.logo.drawing.RGBColor;
 import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import it.unicam.cs.pa.ma114763.logo.shape.Polygon;
-import it.unicam.cs.pa.ma114763.logo.statement.Statement;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -54,13 +56,13 @@ public class LogoUI extends Application {
         stage.setScene(scene);
         stage.show();
 
-        LogoParser parser = new LogoParser();
-        List<Statement> statements = parser.parse(program);
-        LogoProcessor processor = new LogoProcessor();
-        FXDrawing drawing = new FXDrawing(canvas, width, height);
-        processor.execute(statements, drawing);
+        DrawingContext drawing = new FXDrawing(canvas, width, height);
+        LogoInterpreter interpreter = new LogoInterpreter(new LogoProcessor(), drawing);
+        interpreter.initialize(new LogoParser(), program);
+        //interpreter.runAll();
 
         textArea.setText(drawing.getDrawingAsString());
+        textArea.setEditable(false);
 
         AtomicBoolean flag = new AtomicBoolean(false);
 
@@ -84,6 +86,13 @@ public class LogoUI extends Application {
             Polygon polygon = new Polygon(new RGBColor(255, 255, 255, 127), strokes);
             polygon.draw(drawing);
             textArea.setText(drawing.getDrawingAsString());
+        });
+
+        textArea.setOnKeyPressed(event -> {
+            if (event.getCode() != KeyCode.SPACE) {
+                return;
+            }
+            interpreter.runNext();
         });
 
 //        LinkedList<Statement> queue = new LinkedList<>(statements);
