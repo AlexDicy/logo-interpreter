@@ -38,4 +38,36 @@ public record Polygon(Color fillColor, List<Line> strokes) implements Shape {
         }
         ctx.getDrawingCanvas().fillPolygon(strokes.stream().map(Line::start).collect(Collectors.toList()));
     }
+
+    /**
+     * Serializes the polygon into a command with the following format:
+     * <p>
+     * <code>POLYGON &lt;n&gt; &lt;fr&gt; &lt;fg&gt; &lt;fb&gt; [f-alpha]<br>
+     * &lt;x<sub>0</sub>&gt; &lt;y<sub>0</sub>&gt; &lt;r<sub>0</sub>&gt; &lt;g<sub>0</sub>&gt; &lt;b<sub>0</sub>&gt; [alpha<sub>0</sub>] &lt;size<sub>0</sub>&gt;<br>
+     * &lt;x<sub>1</sub>&gt; &lt;y<sub>1</sub>&gt; &lt;r<sub>1</sub>&gt; &lt;g<sub>1</sub>&gt; &lt;b<sub>1</sub>&gt; [alpha<sub>1</sub>] &lt;size<sub>1</sub>&gt;<br>
+     * ...<br>
+     * &lt;x<sub>n-1</sub>&gt; &lt;y<sub>n-1</sub>&gt; &lt;r<sub>n-1</sub>&gt; &lt;g<sub>n-1</sub>&gt; &lt;b<sub>n-1</sub>&gt; [alpha<sub>n-1</sub>] &lt;size<sub>n-1</sub>&gt;<br>
+     *
+     * @return the serialized polygon
+     */
+    @Override
+    public String serialize() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("POLYGON ").append(strokes.size()).append(" ");
+        appendColor(sb, fillColor).append("\n");
+
+        for (Line stroke : strokes) {
+            sb.append(stroke.start().getX()).append(" ").append(stroke.start().getY()).append(" ");
+            appendColor(sb, stroke.color()).append(" ").append(stroke.size()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    private static StringBuilder appendColor(StringBuilder sb, Color color) {
+        sb.append(color.getRed()).append(" ").append(color.getGreen()).append(" ").append(color.getBlue());
+        if (!color.isOpaque()) {
+            sb.append(" ").append(color.getAlpha());
+        }
+        return sb;
+    }
 }

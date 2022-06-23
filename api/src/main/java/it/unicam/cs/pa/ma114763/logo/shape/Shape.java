@@ -18,4 +18,11 @@ public interface Shape {
      * @param ctx the drawing context
      */
     void draw(DrawingContext ctx);
+
+    /**
+     * Converts the {@link Shape} object into a string that represents the shape.
+     *
+     * @return the serialized string
+     */
+    String serialize();
 }
