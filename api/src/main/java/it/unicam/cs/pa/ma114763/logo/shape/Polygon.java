@@ -54,11 +54,11 @@ public record Polygon(Color fillColor, List<Line> strokes) implements Shape {
     public String serialize() {
         StringBuilder sb = new StringBuilder();
         sb.append("POLYGON ").append(strokes.size()).append(" ");
-        appendColor(sb, fillColor).append("\n");
+        appendColor(sb, fillColor);
 
         for (Line stroke : strokes) {
-            sb.append(stroke.start().getX()).append(" ").append(stroke.start().getY()).append(" ");
-            appendColor(sb, stroke.color()).append(" ").append(stroke.size()).append("\n");
+            sb.append("\n").append(stroke.start().getX()).append(" ").append(stroke.start().getY()).append(" ");
+            appendColor(sb, stroke.color()).append(" ").append(stroke.size());
         }
         return sb.toString();
     }
