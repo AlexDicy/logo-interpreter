@@ -1,7 +1,7 @@
 package it.unicam.cs.pa.ma114763.logo.parser;
 
-import it.unicam.cs.pa.ma114763.logo.Color;
-import it.unicam.cs.pa.ma114763.logo.RGBColor;
+import it.unicam.cs.pa.ma114763.logo.drawing.Color;
+import it.unicam.cs.pa.ma114763.logo.drawing.RGBColor;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidSyntaxException;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
 import it.unicam.cs.pa.ma114763.logo.parser.tokentype.LBracketTokenType;

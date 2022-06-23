@@ -1,4 +1,4 @@
-package it.unicam.cs.pa.ma114763.logo;
+package it.unicam.cs.pa.ma114763.logo.drawing;
 
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import it.unicam.cs.pa.ma114763.logo.shape.Polygon;

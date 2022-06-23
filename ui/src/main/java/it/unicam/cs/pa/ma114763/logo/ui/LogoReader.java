@@ -1,9 +1,9 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
-import it.unicam.cs.pa.ma114763.logo.Color;
-import it.unicam.cs.pa.ma114763.logo.Point;
-import it.unicam.cs.pa.ma114763.logo.Position2D;
-import it.unicam.cs.pa.ma114763.logo.RGBColor;
+import it.unicam.cs.pa.ma114763.logo.drawing.Color;
+import it.unicam.cs.pa.ma114763.logo.drawing.Point;
+import it.unicam.cs.pa.ma114763.logo.drawing.Position2D;
+import it.unicam.cs.pa.ma114763.logo.drawing.RGBColor;
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import it.unicam.cs.pa.ma114763.logo.shape.Polygon;
 import org.jetbrains.annotations.Nullable;

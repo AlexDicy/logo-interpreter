@@ -1,6 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
-import it.unicam.cs.pa.ma114763.logo.Color;
+import it.unicam.cs.pa.ma114763.logo.drawing.Color;
 import javafx.scene.paint.Paint;
 
 import static javafx.scene.paint.Color.rgb;

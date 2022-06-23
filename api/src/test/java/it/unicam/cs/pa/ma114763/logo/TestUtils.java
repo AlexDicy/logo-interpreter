@@ -1,5 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo;
 
+import it.unicam.cs.pa.ma114763.logo.drawing.Color;
 import it.unicam.cs.pa.ma114763.logo.statement.SetColorStatement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

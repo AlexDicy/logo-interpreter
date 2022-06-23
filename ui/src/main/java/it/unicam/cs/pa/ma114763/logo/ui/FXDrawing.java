@@ -1,6 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
-import it.unicam.cs.pa.ma114763.logo.*;
+import it.unicam.cs.pa.ma114763.logo.drawing.*;
 import it.unicam.cs.pa.ma114763.logo.shape.Shape;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

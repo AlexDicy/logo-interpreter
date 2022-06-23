@@ -1,7 +1,7 @@
 package it.unicam.cs.pa.ma114763.logo.shape;
 
-import it.unicam.cs.pa.ma114763.logo.Color;
-import it.unicam.cs.pa.ma114763.logo.DrawingContext;
+import it.unicam.cs.pa.ma114763.logo.drawing.Color;
+import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
 
 import java.util.List;
 import java.util.stream.Collectors;

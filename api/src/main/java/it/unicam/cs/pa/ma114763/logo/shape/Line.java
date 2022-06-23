@@ -1,6 +1,8 @@
 package it.unicam.cs.pa.ma114763.logo.shape;
 
-import it.unicam.cs.pa.ma114763.logo.*;
+import it.unicam.cs.pa.ma114763.logo.drawing.Color;
+import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
+import it.unicam.cs.pa.ma114763.logo.drawing.Position2D;
 
 /**
  * @param start the start position of the line
