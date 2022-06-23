@@ -25,4 +25,11 @@ public interface Color {
      * @return the alpha component of the color, between 0 and 255.
      */
     int getAlpha();
+
+    /**
+     * @return true if the color is opaque, false if {@link #getAlpha()} is <code>< 255</code>.
+     */
+    default boolean isOpaque() {
+        return getAlpha() == 255;
+    }
 }
