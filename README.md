@@ -47,6 +47,6 @@ Il progetto consegnato a questo livello di sviluppo dovrà:
 - Definire una gerarchia di classi per controllare l’esecuzione di un programma Logo;
   - Interpreter, Processor.
 - Definire le classi per leggere un programma da file;
-  - Parser, Token, TokenType, Tokenizer, Reader.
+  - Parser, Token, TokenType, Tokenizer, ResourceReader.
 - Definire le classi per scrivere il risultato dell’esecuzione del programma.
-  - Writer.
+  - ResourceWriter.

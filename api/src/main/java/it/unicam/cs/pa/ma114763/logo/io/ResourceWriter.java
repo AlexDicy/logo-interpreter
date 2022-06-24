@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  * @author Lorenzo Lapucci
  */
-public interface Writer {
+public interface ResourceWriter {
 
     /**
      * Writes the given string to the resource.

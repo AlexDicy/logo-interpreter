@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  * @author Lorenzo Lapucci
  */
-public interface Reader {
+public interface ResourceReader {
 
     /**
      * Reads the program string from the resource
