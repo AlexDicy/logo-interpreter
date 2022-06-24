@@ -37,3 +37,16 @@ FORWARD 220
 PENDOWN
 RIPETI 18 [RIPETI 5 [RIGHT 40 FORWARD 100 RIGHT 120] RIGHT 20]
 ```
+
+### Sviluppo Base (Valutazione massima 22)
+Il progetto consegnato a questo livello di sviluppo dovrà:
+- Definire una gerarchia di classi per rappresentare il programma Logo e le istruzioni;
+  - Statement.
+- Definire una gerarchia di classi per rappresentare il risultato dell’esecuzione di un programma logo;
+  - DrawingContext, DrawingCanvas, Shape (Line, Polygon).
+- Definire una gerarchia di classi per controllare l’esecuzione di un programma Logo;
+  - Interpreter, Processor.
+- Definire le classi per leggere un programma da file;
+  - Parser, Token, TokenType, Tokenizer, Reader.
+- Definire le classi per scrivere il risultato dell’esecuzione del programma.
+  - Writer.
