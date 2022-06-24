@@ -1,4 +1,4 @@
-package it.unicam.cs.pa.ma114763.logo;
+package it.unicam.cs.pa.ma114763.logo.processor;
 
 import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
 import it.unicam.cs.pa.ma114763.logo.statement.*;

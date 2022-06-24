@@ -1,6 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo.parser;
 
-import it.unicam.cs.pa.ma114763.logo.Processor;
+import it.unicam.cs.pa.ma114763.logo.processor.Processor;
 import it.unicam.cs.pa.ma114763.logo.statement.Statement;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
 

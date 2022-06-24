@@ -3,6 +3,7 @@ package it.unicam.cs.pa.ma114763.logo;
 import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
 import it.unicam.cs.pa.ma114763.logo.parser.Parser;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
+import it.unicam.cs.pa.ma114763.logo.processor.Processor;
 import it.unicam.cs.pa.ma114763.logo.statement.Statement;
 
 import java.util.LinkedList;

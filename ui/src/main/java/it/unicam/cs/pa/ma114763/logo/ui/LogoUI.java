@@ -1,7 +1,7 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
 import it.unicam.cs.pa.ma114763.logo.LogoInterpreter;
-import it.unicam.cs.pa.ma114763.logo.LogoProcessor;
+import it.unicam.cs.pa.ma114763.logo.processor.LogoProcessor;
 import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
 import it.unicam.cs.pa.ma114763.logo.drawing.Point;
 import it.unicam.cs.pa.ma114763.logo.drawing.RGBColor;
