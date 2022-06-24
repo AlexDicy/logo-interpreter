@@ -53,6 +53,13 @@ class LogoTokenizerTest {
         assertToken(t5, 3, "randomWord");
     }
 
+    /**
+     * Asserts that the list of tokens contains exactly one token with the given type and value.
+     *
+     * @param tokens         the list of tokens to check
+     * @param tokenTypeIndex the index of the token type to check against
+     * @param text           the expected text of the token
+     */
     private static void assertToken(List<Token> tokens, int tokenTypeIndex, String text) {
         assertEquals(1, tokens.size());
         assertInstanceOf(types.get(tokenTypeIndex).getClass(), tokens.get(0).type());
