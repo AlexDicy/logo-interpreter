@@ -10,9 +10,10 @@ import java.util.List;
 public interface Tokenizer {
     /**
      * Takes a string of characters and returns the corresponding token.
+     * If part of the string is not a token, it returns an empty list.
      *
      * @param input the string of characters
-     * @return the matched token or null if no token was matched
+     * @return the matched token list or an empty list if part of the string is not a token
      */
     List<Token> matchTokens(String input);
 }

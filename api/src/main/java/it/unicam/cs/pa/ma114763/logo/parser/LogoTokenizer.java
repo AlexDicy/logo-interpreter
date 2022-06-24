@@ -1,7 +1,5 @@
 package it.unicam.cs.pa.ma114763.logo.parser;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,7 +16,7 @@ public class LogoTokenizer implements Tokenizer {
     }
 
     @Override
-    public @Nullable List<Token> matchTokens(String input) {
+    public List<Token> matchTokens(String input) {
         List<Token> tokens = new ArrayList<>(1);
         while (input.length() > 0) {
             int matchedSize = matchTokenAndAdd(input, tokens);
