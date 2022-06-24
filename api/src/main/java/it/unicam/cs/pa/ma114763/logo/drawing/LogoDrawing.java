@@ -62,7 +62,7 @@ public abstract class LogoDrawing implements DrawingContext {
 
     @Override
     public void setCurrentPosition(double x, double y) {
-        position = new Point(x, y);
+        position = new Point(getSafeX(x), getSafeY(y));
     }
 
     @Override
