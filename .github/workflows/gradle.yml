@@ -29,7 +29,9 @@ jobs:
         distribution: 'temurin'
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
-    - name: Build with Gradle
-      run: gradle build
-    - name: Run tests with Gradle
+    - name: Build with gradle
+      run: gradle build -x test
+    - name: Build tests with gradle
+      run: gradle build testClasses -x test
+    - name: Run tests with gradle
       run: gradle test
