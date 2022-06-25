@@ -2,8 +2,6 @@ package it.unicam.cs.pa.ma114763.logo.drawing;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -84,22 +82,4 @@ class LogoDrawingTest {
         assertTrue(drawing.getCurrentPosition().isSamePosition(new Point(5, 0)));
     }
 
-    static class DummyLogoDrawing extends LogoDrawing {
-        public DummyLogoDrawing(int width, int height) {
-            super(width, height);
-        }
-
-        @Override
-        public DrawingCanvas getDrawingCanvas() {
-            return new DrawingCanvas() {
-                @Override
-                public void strokeLine(double startX, double startY, double endX, double endY) {
-                }
-
-                @Override
-                public void fillPolygon(List<Position2D> points) {
-                }
-            };
-        }
-    }
 }
