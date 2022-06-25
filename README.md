@@ -38,6 +38,16 @@ PENDOWN
 RIPETI 18 [RIPETI 5 [RIGHT 40 FORWARD 100 RIGHT 120] RIGHT 20]
 ```
 
+## Running the interpreter
+### CLI (Non interactive)
+... TODO
+### CLI (Interactive)
+... TODO
+### GUI
+```bash
+$ ./gradlew :ui:run
+```
+
 ### Sviluppo Base (Valutazione massima 22)
 Il progetto consegnato a questo livello di sviluppo dovrà:
 - Definire una gerarchia di classi per rappresentare il programma Logo e le istruzioni;
