@@ -4,8 +4,8 @@ plugins {
 }
 
 javafx {
-    version = "17.0.1"
-    modules = [ 'javafx.controls' ]
+    version = "18"
+    modules = [ 'javafx.fxml', 'javafx.controls' ]
 }
 
 mainClassName = 'it.unicam.cs.pa.ma114763.logo.ui.LogoUI'
