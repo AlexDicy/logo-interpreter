@@ -24,6 +24,7 @@ subprojects {
 
     tasks.withType(JavaExec) {
         jvmArgs('--enable-preview')
+        standardInput = System.in // make sure that stdin is used when running gradle tasks
     }
 
     test {

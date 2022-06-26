@@ -40,9 +40,17 @@ RIPETI 18 [RIPETI 5 [RIGHT 40 FORWARD 100 RIGHT 120] RIGHT 20]
 
 ## Running the interpreter
 ### CLI (Non interactive)
-... TODO
+```bash
+$ ./gradlew :cli:run --args="-i input.txt -o output.logo -s 512x512"
+```
+Show help
+```bash
+$ ./gradlew :cli:run --args="-h"
+```
 ### CLI (Interactive)
-... TODO
+```bash
+$ ./gradlew --console plain :cli:run
+```
 ### GUI
 ```bash
 $ ./gradlew :ui:run
