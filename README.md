@@ -58,6 +58,8 @@ $ ./gradlew :ui:run
 ```
 
 ### Sviluppo Base (Valutazione massima 22)
+See: [CLI (Non-interactive)](#cli-non-interactive)
+
 Il progetto consegnato a questo livello di sviluppo dovrà:
 - Definire una gerarchia di classi per rappresentare il programma Logo e le istruzioni;
   - Statement.
@@ -69,3 +71,9 @@ Il progetto consegnato a questo livello di sviluppo dovrà:
   - Parser, Token, TokenType, Tokenizer, ResourceReader.
 - Definire le classi per scrivere il risultato dell’esecuzione del programma.
   - ResourceWriter.
+
+### Implementazione Media (Valutazione massima 25)
+See: [CLI (Interactive)](#cli-interactive)
+
+### Implementazione Avanzata (Valutazione massima 30 e Lode)
+See: [GUI](#gui)
