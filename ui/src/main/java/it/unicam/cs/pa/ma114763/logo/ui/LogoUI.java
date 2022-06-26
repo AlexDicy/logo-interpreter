@@ -1,15 +1,17 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
 import it.unicam.cs.pa.ma114763.logo.LogoInterpreter;
-import it.unicam.cs.pa.ma114763.logo.processor.LogoProcessor;
 import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
 import it.unicam.cs.pa.ma114763.logo.drawing.Point;
 import it.unicam.cs.pa.ma114763.logo.drawing.RGBColor;
 import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
+import it.unicam.cs.pa.ma114763.logo.processor.LogoProcessor;
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import it.unicam.cs.pa.ma114763.logo.shape.Polygon;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextArea;
@@ -17,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -25,7 +28,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class LogoUI extends Application {
     @Override
-    public void start(Stage stage) throws ParserException {
+    public void start(Stage stage) throws ParserException, IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/root.fxml"));
+
         final int width = 800;
         final int height = 600;
         final int textAreaHeight = 400;
