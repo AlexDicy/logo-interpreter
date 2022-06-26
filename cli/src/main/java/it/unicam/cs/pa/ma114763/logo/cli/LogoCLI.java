@@ -114,11 +114,11 @@ public class LogoCLI {
         while (path == null) {
             System.out.println("Input file:");
             File input = new File(scanner.nextLine());
-            if (!input.exists()) {
-                System.out.println("File not found, try again");
-            } else {
-                path = input.toPath();
+            if (!input.exists() || !input.isFile()) {
+                System.out.println("File not found or not a valid file, try again");
+                continue;
             }
+            path = input.toPath();
         }
         return path;
     }
