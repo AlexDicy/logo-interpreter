@@ -127,7 +127,9 @@ public class LogoCLI {
         Path path = null;
         while (path == null) {
             System.out.println("Output file:");
-            File output = new File(scanner.nextLine());
+            String arg = scanner.nextLine();
+            if (arg.trim().isEmpty()) continue;
+            File output = new File(arg);
             if (output.exists()) {
                 System.out.println("File already exists, do you want to overwrite it? (y/n)");
                 String answer = scanner.nextLine();
