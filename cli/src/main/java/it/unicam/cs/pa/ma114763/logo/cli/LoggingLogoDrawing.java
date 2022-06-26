@@ -29,14 +29,14 @@ public class LoggingLogoDrawing extends LogoDrawing {
         public void strokeLine(double startX, double startY, double endX, double endY) {
             System.out.println("Line drawn from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ") with the color values:");
             Color color = getStrokeColor();
-            System.out.print("\tR: " + color.getRed() + ", G: " + color.getGreen() + ", B: " + color.getBlue() + ", A: " + color.getAlpha());
+            System.out.println("\tR: " + color.getRed() + ", G: " + color.getGreen() + ", B: " + color.getBlue() + ", A: " + color.getAlpha());
         }
 
         @Override
         public void fillPolygon(List<Position2D> points) {
             System.out.println("Polygon filled with " + points.size() + " points with the color values:");
             Color color = getFillColor();
-            System.out.print("\tR: " + color.getRed() + ", G: " + color.getGreen() + ", B: " + color.getBlue() + ", A: " + color.getAlpha());
+            System.out.println("\tR: " + color.getRed() + ", G: " + color.getGreen() + ", B: " + color.getBlue() + ", A: " + color.getAlpha());
         }
     }
 }
