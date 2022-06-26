@@ -1,3 +1,4 @@
 rootProject.name = 'logo-pa'
 include(':api')
+include(':cli')
 include(':ui')

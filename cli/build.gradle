@@ -1,0 +1,9 @@
+plugins {
+    id 'application'
+}
+
+mainClassName = 'it.unicam.cs.pa.ma114763.logo.cli.LogoCLI'
+
+dependencies {
+    implementation(project(path: ':api'))
+}
