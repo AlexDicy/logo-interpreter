@@ -40,21 +40,35 @@ RIPETI 18 [RIPETI 5 [RIGHT 40 FORWARD 100 RIGHT 120] RIGHT 20]
 
 ## Running the interpreter
 ### CLI (Non interactive)
-Keep in mind that gradle runs relative to the module directory (`./cli/`)
+###### Using gradle (Keep in mind that the working directory is: `./cli/`)
 ```bash
 $ ./gradlew :cli:run --args="-i input.txt -o output.logo -s 512x512"
+```
+###### Using the jar file
+```bash
+$ java --enable-preview -jar cli.jar -i input.txt -o output.logo -s 512x512
 ```
 Show help
 ```bash
 $ ./gradlew :cli:run --args="-h"
 ```
 ### CLI (Interactive)
+###### Using gradle (Keep in mind that the working directory is: `./cli/`)
 ```bash
 $ ./gradlew --console plain :cli:run
 ```
+###### Using the jar file
+```bash
+$ java --enable-preview -jar cli.jar
+```
 ### GUI
+###### Using gradle
 ```bash
 $ ./gradlew :ui:run
+```
+###### Using the jar file
+```bash
+$ java --enable-preview -jar ui.jar
 ```
 
 ### Sviluppo Base (Valutazione massima 22)

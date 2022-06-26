@@ -10,6 +10,23 @@ javafx {
 
 mainClassName = 'it.unicam.cs.pa.ma114763.logo.ui.LogoUI'
 
+tasks.withType(Jar) {
+    manifest {
+        attributes["Manifest-Version"] = "1.0"
+        attributes["Main-Class"] = mainClassName
+    }
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.filter {
+            it.exists()
+        }.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
 dependencies {
     implementation(project(path: ':api'))
 }
