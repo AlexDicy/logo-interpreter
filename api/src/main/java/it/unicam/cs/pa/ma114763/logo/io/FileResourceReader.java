@@ -1,9 +1,9 @@
 package it.unicam.cs.pa.ma114763.logo.io;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
 
 /**
  * {@link ResourceReader} implementation for files.
@@ -11,15 +11,15 @@ import java.nio.file.Path;
  * @author Lorenzo Lapucci
  */
 public class FileResourceReader implements ResourceReader {
-    private final Path path;
+    private final File file;
 
-    public FileResourceReader(Path path) {
-        this.path = path;
+    public FileResourceReader(File file) {
+        this.file = file;
     }
 
     @Override
     public String read() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(path.toFile()));
+        BufferedReader reader = new BufferedReader(new FileReader(file));
         StringBuilder builder = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
