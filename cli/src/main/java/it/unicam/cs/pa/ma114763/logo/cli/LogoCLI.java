@@ -1,7 +1,12 @@
 package it.unicam.cs.pa.ma114763.logo.cli;
 
+import it.unicam.cs.pa.ma114763.logo.LogoInterpreter;
+import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
+import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
+import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
+import it.unicam.cs.pa.ma114763.logo.processor.LogoProcessor;
+
 import java.io.File;
-import java.nio.file.Path;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -13,8 +18,8 @@ public class LogoCLI {
     public static void main(String[] args) {
         Map<String, String> options = OptionsUtils.getOptions(args);
 
-        Path input = null;
-        Path output = null;
+        File input = null;
+        File output = null;
         Size size = null;
 
         if (options.containsKey("h") || options.containsKey("help")) {
@@ -23,10 +28,10 @@ public class LogoCLI {
         }
         try {
             if (options.containsKey("i") || options.containsKey("input")) {
-                input = Path.of(getStringArg(options, "i", "input", "No input file specified"));
+                input = new File(getStringArg(options, "i", "input", "No input file specified"));
             }
             if (options.containsKey("o") || options.containsKey("output")) {
-                output = Path.of(getStringArg(options, "o", "output", "No output file specified"));
+                output = new File(getStringArg(options, "o", "output", "No output file specified"));
             }
             if (options.containsKey("s") || options.containsKey("size")) {
                 size = parseSize(getStringArg(options, "s", "size", "No size specified"));
@@ -77,17 +82,15 @@ public class LogoCLI {
      * @param output Output file
      * @param size   Size of the canvas
      */
-    private void checkAndRun(Path input, Path output, Size size) {
+    private void checkAndRun(File input, File output, Size size) {
         if (input == null || output == null || size == null) {
             askAndRun(new Scanner(System.in), input, output, size);
-            System.out.println("Interactive mode not implemented yet");
         } else {
-            System.out.println("Non-interactive mode not implemented yet");
-            //run(input, output, size);
+            run(input, output, size);
         }
     }
 
-    private void askAndRun(Scanner scanner, Path input, Path output, Size size) {
+    private void askAndRun(Scanner scanner, File input, File output, Size size) {
         if (input == null) {
             input = askForInput(scanner);
         }
@@ -102,30 +105,50 @@ public class LogoCLI {
         run(input, output, size);
     }
 
-    private void run(Path input, Path output, Size size) {
-        System.out.println("Running...");
-        System.out.println("Input: " + input);
-        System.out.println("Output: " + output);
-        System.out.println("Size: " + size);
+    private void run(File input, File output, Size size) {
+        System.out.println("Running Logo interpreter on input file: " + input);
+        System.out.println("Saving file: " + output + "\nCanvas size: " + size.width() + "w " + size.height() + "h");
+        DrawingContext drawing = new LoggingLogoDrawing(size.width(), size.height());
+        LogoInterpreter interpreter = new LogoInterpreter(new LogoProcessor(), drawing);
+        String program = FileUtils.readProgramFromFile(input);
+
+        if (program != null && runProgram(interpreter, program)) {
+            if (FileUtils.saveProgramToFile(output, drawing.getDrawingAsString())) {
+                System.out.println("Program saved to file: " + output);
+            } else {
+                System.out.println("Error saving program to file: " + output);
+            }
+        }
     }
 
-    private Path askForInput(Scanner scanner) {
-        Path path = null;
-        while (path == null) {
+    private boolean runProgram(LogoInterpreter interpreter, String program) {
+        try {
+            interpreter.initialize(new LogoParser(), program);
+            interpreter.runAll();
+            return true;
+        } catch (ParserException e) {
+            System.out.println("Input parser error: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private File askForInput(Scanner scanner) {
+        File file = null;
+        while (file == null) {
             System.out.println("Input file:");
             File input = new File(scanner.nextLine());
             if (!input.exists() || !input.isFile()) {
                 System.out.println("File not found or not a valid file, try again");
                 continue;
             }
-            path = input.toPath();
+            file = input;
         }
-        return path;
+        return file;
     }
 
-    private Path askForOutput(Scanner scanner) {
-        Path path = null;
-        while (path == null) {
+    private File askForOutput(Scanner scanner) {
+        File file = null;
+        while (file == null) {
             System.out.println("Output file:");
             String arg = scanner.nextLine();
             if (arg.trim().isEmpty()) continue;
@@ -137,9 +160,9 @@ public class LogoCLI {
                     continue;
                 }
             }
-            path = output.toPath();
+            file = output;
         }
-        return path;
+        return file;
     }
 
     private int askForDimension(Scanner scanner, String name) {
