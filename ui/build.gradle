@@ -12,7 +12,7 @@ mainClassName = 'it.unicam.cs.pa.ma114763.logo.ui.LogoUI'
 
 jar {
     manifest {
-        attributes 'Main-Class': mainClassName
+        attributes 'Main-Class': 'it.unicam.cs.pa.ma114763.logo.ui.JARMain'
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from {
