@@ -40,6 +40,7 @@ RIPETI 18 [RIPETI 5 [RIGHT 40 FORWARD 100 RIGHT 120] RIGHT 20]
 
 ## Running the interpreter
 ### CLI (Non interactive)
+Keep in mind that gradle runs relative to the module directory (`./cli/`)
 ```bash
 $ ./gradlew :cli:run --args="-i input.txt -o output.logo -s 512x512"
 ```
