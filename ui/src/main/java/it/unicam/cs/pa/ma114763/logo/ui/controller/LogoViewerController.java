@@ -24,7 +24,13 @@ public class LogoViewerController implements DataController<String> {
     @Override
     public void setData(String data) {
         this.program = data;
-        DrawingContext drawing = new FXDrawing(canvas, ((int) canvas.getWidth()), ((int) canvas.getWidth()));
+        initializeInterpreter();
+    }
+
+    @FXML
+    private void initializeInterpreter() {
+        DrawingContext drawing = new FXDrawing(canvas, 800, 600);
+        canvas.resize(drawing.getWidth(), drawing.getHeight());
         interpreter = new LogoInterpreter(new LogoProcessor(), drawing);
         try {
             interpreter.initialize(new LogoParser(), program);
