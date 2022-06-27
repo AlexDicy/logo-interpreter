@@ -11,7 +11,6 @@ import it.unicam.cs.pa.ma114763.logo.processor.LogoProcessor;
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import it.unicam.cs.pa.ma114763.logo.shape.Polygon;
 import it.unicam.cs.pa.ma114763.logo.ui.controller.DataController.DataController;
-import it.unicam.cs.pa.ma114763.logo.ui.controller.LogoViewerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,7 +45,7 @@ public class LogoUI extends Application {
         instance = this;
         this.stage = stage;
 
-        replaceRoot("fxml/choose_file.fxml");
+        openRoot("fxml/choose_file.fxml");
         stage.setTitle("Logo Interpreter");
         //noinspection ConstantConditions
         stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icons/app-icon.png")));
@@ -56,7 +55,7 @@ public class LogoUI extends Application {
         FileResourceReader reader = new FileResourceReader(new File("D:\\Downloads\\logoprogram.txt"));
         try {
             String program = reader.read();
-            LogoUI.getInstance().replaceRoot("fxml/logo_viewer.fxml", program, LogoViewerController.class);
+            LogoUI.getInstance().openRoot("fxml/logo_viewer.fxml", program, false);
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Error while reading file\n\nError: " + e.getMessage()).show();
         }
@@ -151,7 +150,7 @@ public class LogoUI extends Application {
         return stage;
     }
 
-    public void replaceRoot(String fxml) {
+    public void openRoot(String fxml) {
         try {
             //noinspection ConstantConditions
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxml));
@@ -162,13 +161,15 @@ public class LogoUI extends Application {
         }
     }
 
-    public <D, C extends DataController<D>> void replaceRoot(String fxml, D data, Class<C> controllerClass) {
+    public <D, C extends DataController<D>> void openRoot(String fxml, D data, boolean newStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(fxml));
             Parent root = loader.load();
             C controller = loader.getController();
             controller.setData(data);
+            Stage stage = newStage ? new Stage() : this.stage;
             stage.setScene(new Scene(root));
+            stage.show();
             stage.centerOnScreen();
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Error loading FXML file\nCannot show the correct scene").show();

@@ -26,6 +26,20 @@ public interface DrawingContext {
     int getHeight();
 
     /**
+     * Sets the new width of the canvas.
+     *
+     * @param width the new width of the canvas
+     */
+    void setWidth(int width);
+
+    /**
+     * Sets the new height of the canvas.
+     *
+     * @param height the new height of the canvas
+     */
+    void setHeight(int height);
+
+    /**
      * @return the current position of the cursor
      */
     Position2D getCurrentPosition();

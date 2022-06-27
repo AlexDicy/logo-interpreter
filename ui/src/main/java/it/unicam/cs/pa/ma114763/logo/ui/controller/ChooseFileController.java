@@ -25,7 +25,7 @@ public class ChooseFileController {
             FileResourceReader reader = new FileResourceReader(file);
             try {
                 String program = reader.read();
-                LogoUI.getInstance().replaceRoot("fxml/logo_viewer.fxml", program, LogoViewerController.class);
+                LogoUI.getInstance().openRoot("fxml/logo_viewer.fxml", program, false);
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Error while reading file\n\nError: " + e.getMessage()).show();
             }

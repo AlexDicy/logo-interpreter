@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?><?import javafx.scene.control.*?><?import javafx.scene.layout.*?><?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #242228;" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="it.unicam.cs.pa.ma114763.logo.ui.controller.ChangeDrawingSizeController">
+    <fx:include source="header.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
+        <padding>
+            <Insets bottom="72.0" left="72.0" right="72.0" top="72.0" />
+        </padding>
+        <VBox alignment="CENTER" spacing="18.0" HBox.hgrow="ALWAYS">
+            <Label alignment="TOP_CENTER" text="Choose a new size for the canvas" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="26.0" />
+                </VBox.margin>
+            </Label>
+            <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <Label prefWidth="50.0" text="Width" textFill="WHITE">
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="widthField" HBox.hgrow="ALWAYS" />
+                </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="53.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <Label prefWidth="50.0" text="Height" textFill="WHITE">
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="heightField" HBox.hgrow="ALWAYS" />
+                </children>
+            </HBox>
+            <HBox alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="170.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#resetFields" styleClass="control-button" text="Reset fields" />
+                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                    <Button layoutX="347.0" layoutY="12.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" styleClass="control-button" text="Cancel" />
+                    <Button layoutX="419.0" layoutY="12.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#apply" styleClass="control-button" text="Apply" />
+                </children>
+                <VBox.margin>
+                    <Insets top="18.0" />
+                </VBox.margin>
+            </HBox>
+        </VBox>
+    </HBox>
+</AnchorPane>

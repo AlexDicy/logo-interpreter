@@ -25,6 +25,18 @@ public class FXDrawing extends LogoDrawing implements DrawingCanvas {
     }
 
     @Override
+    public void setWidth(int width) {
+        super.setWidth(width);
+        repaint();
+    }
+
+    @Override
+    public void setHeight(int height) {
+        super.setHeight(height);
+        repaint();
+    }
+
+    @Override
     public void setBackgroundColor(Color color) {
         super.setBackgroundColor(color);
         repaint();

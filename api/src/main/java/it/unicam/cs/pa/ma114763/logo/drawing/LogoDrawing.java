@@ -56,6 +56,16 @@ public abstract class LogoDrawing implements DrawingContext {
     }
 
     @Override
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    @Override
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    @Override
     public Position2D getCurrentPosition() {
         return position;
     }

@@ -1,19 +1,27 @@
 package it.unicam.cs.pa.ma114763.logo.ui.controller;
 
 import it.unicam.cs.pa.ma114763.logo.LogoInterpreter;
+import it.unicam.cs.pa.ma114763.logo.io.FileResourceWriter;
 import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
 import it.unicam.cs.pa.ma114763.logo.processor.LogoProcessor;
 import it.unicam.cs.pa.ma114763.logo.statement.Statement;
+import it.unicam.cs.pa.ma114763.logo.ui.CanvasResizeHandler;
 import it.unicam.cs.pa.ma114763.logo.ui.FXDrawing;
+import it.unicam.cs.pa.ma114763.logo.ui.LogoUI;
 import it.unicam.cs.pa.ma114763.logo.ui.controller.DataController.DataController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -86,5 +94,28 @@ public class LogoViewerController implements DataController<String> {
     @FXML
     private void runNext() {
         interpreter.runNext();
+    }
+
+    @FXML
+    private void changeDrawingSize() {
+        CanvasResizeHandler resizeHandler = new CanvasResizeHandler(canvas, drawing);
+        LogoUI.getInstance().openRoot("fxml/change_drawing_size.fxml", resizeHandler, true);
+    }
+
+    @FXML
+    private void saveToFile(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Logo File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Logo file", "*.logo"), new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file = fileChooser.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
+        if (file != null) {
+            FileResourceWriter writer = new FileResourceWriter(file);
+            try {
+                writer.write(drawing.getDrawingAsString());
+                new Alert(Alert.AlertType.INFORMATION, "File saved successfully").show();
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR, "Error while saving file\n\nError: " + e.getMessage()).show();
+            }
+        }
     }
 }
