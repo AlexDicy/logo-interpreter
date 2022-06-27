@@ -1,6 +1,7 @@
 package it.unicam.cs.pa.ma114763.logo.ui.controller;
 
 import it.unicam.cs.pa.ma114763.logo.io.FileResourceReader;
+import it.unicam.cs.pa.ma114763.logo.ui.LogoUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -21,9 +22,10 @@ public class ChooseFileController {
         fileChooser.setTitle("Open Logo Program File");
         File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
         if (file != null) {
-            FileResourceReader reader = new FileResourceReader(file.getParentFile());
+            FileResourceReader reader = new FileResourceReader(file);
             try {
                 String program = reader.read();
+                LogoUI.getInstance().replaceRoot("fxml/logo_viewer.fxml", program, LogoViewerController.class);
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Error while reading file\n\nError: " + e.getMessage()).show();
             }

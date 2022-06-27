@@ -9,11 +9,13 @@ import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
 import it.unicam.cs.pa.ma114763.logo.processor.LogoProcessor;
 import it.unicam.cs.pa.ma114763.logo.shape.Line;
 import it.unicam.cs.pa.ma114763.logo.shape.Polygon;
+import it.unicam.cs.pa.ma114763.logo.ui.controller.DataController.DataController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -28,14 +30,23 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author Lorenzo Lapucci
  */
 public class LogoUI extends Application {
+
+    private static LogoUI instance;
+
+    private Stage stage;
+
     @Override
     public void start(Stage stage) throws ParserException, IOException {
-        //noinspection ConstantConditions
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/choose_file.fxml"));
+        if (instance != null) {
+            throw new IllegalStateException("LogoUI is already running");
+        }
+        instance = this;
+        this.stage = stage;
+
+        replaceRoot("fxml/choose_file.fxml");
         stage.setTitle("Logo Interpreter");
         //noinspection ConstantConditions
         stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icons/app-icon.png")));
-        stage.setScene(new Scene(root));
         stage.show();
 
         final int width = 800;
@@ -122,6 +133,38 @@ public class LogoUI extends Application {
 //                queue.addAll(0, result);
 //            }
 //        });
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void replaceRoot(String fxml) {
+        try {
+            //noinspection ConstantConditions
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxml));
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Error loading FXML file\nCannot show the correct scene").show();
+        }
+    }
+
+    public <D, C extends DataController<D>> void replaceRoot(String fxml, D data, Class<C> controllerClass) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(fxml));
+            Parent root = loader.load();
+            C controller = loader.getController();
+            controller.setData(data);
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Error loading FXML file\nCannot show the correct scene").show();
+        }
+    }
+
+    public static LogoUI getInstance() {
+        return instance;
     }
 
     public static void main(String[] args) {
