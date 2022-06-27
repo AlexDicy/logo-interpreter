@@ -37,7 +37,7 @@ public class LogoInterpreter implements Interpreter {
 
     private void parseInput(Parser parser, String program) throws ParserException {
         statements = parser.parse(program);
-        queue = new LinkedList<>(statements);
+        resetQueue();
     }
 
     @Override
@@ -63,5 +63,10 @@ public class LogoInterpreter implements Interpreter {
             queue.addAll(0, result); // add results to the head of the queue
         }
         return true;
+    }
+
+    @Override
+    public void resetQueue() {
+        queue = new LinkedList<>(statements);
     }
 }

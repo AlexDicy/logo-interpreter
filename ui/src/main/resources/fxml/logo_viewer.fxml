@@ -9,8 +9,10 @@
       <children>
          <HBox prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
             <children>
-               <Button mnemonicParsing="false" text="Next" />
+               <Button mnemonicParsing="false" onAction="#reset" text="Reset" />
                <Button mnemonicParsing="false" onAction="#resetAndRunAll" text="Reset and Run All" />
+               <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+               <Button mnemonicParsing="false" onAction="#runNext" text="Next" />
             </children></HBox>
          <SplitPane dividerPositions="0.8" prefHeight="160.0" prefWidth="200.0" styleClass="bg-transparent" VBox.vgrow="ALWAYS">
            <items>

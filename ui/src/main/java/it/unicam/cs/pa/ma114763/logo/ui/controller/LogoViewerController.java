@@ -70,10 +70,21 @@ public class LogoViewerController implements DataController<String> {
     }
 
     @FXML
-    private void resetAndRunAll() {
+    private void reset() {
         drawing.clear();
         drawing.home();
         drawing.setCurrentDirection(0);
+        interpreter.resetQueue();
+    }
+
+    @FXML
+    private void resetAndRunAll() {
+        reset();
         interpreter.runAll();
+    }
+
+    @FXML
+    private void runNext() {
+        interpreter.runNext();
     }
 }

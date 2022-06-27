@@ -43,4 +43,10 @@ public interface Interpreter {
      * @see #initialize
      */
     boolean runNext();
+
+    /**
+     * Clears the queue of statements to be executed and fills it again
+     * with the original statements of the program.
+     */
+    void resetQueue();
 }
