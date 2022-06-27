@@ -92,7 +92,8 @@ public class LogoViewerController implements DataController<String> {
         drawing.clear();
         drawing.home();
         drawing.setCurrentDirection(0);
-        interpreter.resetQueue();
+        interpreter.reset();
+        fillCommandsList();
     }
 
     @FXML
@@ -102,8 +103,9 @@ public class LogoViewerController implements DataController<String> {
     }
 
     @FXML
-    private void runNext() {
-        interpreter.runNext();
+    private void runNextLine() {
+        interpreter.runNextRoot();
+        fillCommandsList();
     }
 
     @FXML
@@ -131,9 +133,10 @@ public class LogoViewerController implements DataController<String> {
 
     private void fillCommandsList() {
         commandsList.getChildren().clear();
-        for (int i = 0; i < parseResults.size(); i++) {
-            for (Token token : parseResults.get(i).tokens()) {
-                commandsList.getChildren().addAll(getTextForToken(token, i == 0), new Text(" "));
+        for (SingleParseResult result : parseResults) {
+            boolean shouldHighlight = result.index() == interpreter.getLastRanRootIndex();
+            for (Token token : result.tokens()) {
+                commandsList.getChildren().addAll(getTextForToken(token, shouldHighlight), new Text(" "));
             }
             if (commandsList.getChildren().size() > 0) {
                 Text last = (Text) commandsList.getChildren().get(commandsList.getChildren().size() - 1);

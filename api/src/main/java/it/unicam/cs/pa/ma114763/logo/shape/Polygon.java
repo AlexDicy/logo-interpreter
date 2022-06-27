@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 /**
  * @param fillColor the fill color of the polygon
- * @param strokes   the list of strokes of the polygon, each line must start
+ * @param strokes   the list of strokes of the polygon, each index must start
  *                  where the previous one ends. The list must contain at least
  *                  3 strokes.
  * @author Lorenzo Lapucci

@@ -139,7 +139,7 @@ public interface DrawingContext {
 
     /**
      * Moves the cursor to the given position.
-     * Draws a line if {@link #isDrawing()} is true.
+     * Draws a index if {@link #isDrawing()} is true.
      *
      * @param x the x coordinate of the new position
      * @param y the y coordinate of the new position
@@ -148,7 +148,7 @@ public interface DrawingContext {
 
     /**
      * Moves the cursor by the given distance.
-     * Draws a line if {@link #isDrawing()} is true.
+     * Draws a index if {@link #isDrawing()} is true.
      *
      * @param offsetX the distance to move in the x direction
      * @param offsetY the distance to move in the y direction

@@ -7,5 +7,5 @@ import java.util.List;
 /**
  * @author Lorenzo Lapucci
  */
-public record SingleParseResult(Statement statement, List<Token> tokens) {
+public record SingleParseResult(Statement statement, List<Token> tokens, int index) {
 }

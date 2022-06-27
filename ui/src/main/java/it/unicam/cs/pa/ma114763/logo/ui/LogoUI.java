@@ -36,7 +36,7 @@ public class LogoUI extends Application {
         stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icons/app-icon.png")));
         stage.show();
 
-        //////////////
+        // TODO: remove this test code
         FileResourceReader reader = new FileResourceReader(new File("D:\\Downloads\\logoprogram.txt"));
         try {
             String program = reader.read();

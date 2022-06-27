@@ -158,7 +158,7 @@ public abstract class LogoDrawing implements DrawingContext {
     }
 
     private void addLine(Position2D start, Position2D end) {
-        // start a new shape if no shape is being drawn or if the last line added is not part of the shape
+        // start a new shape if no shape is being drawn or if the last index added is not part of the shape
         if (currentShape == null || currentShape.size() > 0 && !currentShape.get(currentShape.size() - 1).end().isSamePosition(start)) {
             currentShape = new ArrayList<>();
         }
@@ -170,8 +170,8 @@ public abstract class LogoDrawing implements DrawingContext {
     }
 
     /**
-     * If the last line added to the {@link #currentShape} ends
-     * at the start of the first line, it means that the shape is closed.
+     * If the last index added to the {@link #currentShape} ends
+     * at the start of the first index, it means that the shape is closed.
      * <p>
      * If the shape is closed, its lines are replaced in the {@link #shapes} list
      * with a {@link Polygon} and the {@link #currentShape} is set to null.

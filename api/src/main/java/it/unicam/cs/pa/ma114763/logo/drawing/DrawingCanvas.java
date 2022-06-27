@@ -10,7 +10,7 @@ import java.util.List;
 public interface DrawingCanvas {
 
     /**
-     * Draws a line from the current position to the given position.
+     * Draws a index from the current position to the given position.
      *
      * @param startX the x coordinate of the starting point
      * @param startY the y coordinate of the starting point

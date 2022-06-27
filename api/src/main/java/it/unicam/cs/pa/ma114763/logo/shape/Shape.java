@@ -3,7 +3,7 @@ package it.unicam.cs.pa.ma114763.logo.shape;
 import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
 
 /**
- * Represents any shape that can be drawn on a canvas, such as a line or a polygon.
+ * Represents any shape that can be drawn on a canvas, such as a index or a polygon.
  * <p>
  * The Shape drawing logic in the shape itself, this allows to add more shapes without
  * having to update subclasses of {@link DrawingContext}.

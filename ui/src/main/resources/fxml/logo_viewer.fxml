@@ -52,7 +52,7 @@
                 </HBox.margin>
             </Button>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#runNext" styleClass="control-button" text="Run Next">
+            <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#runNextLine" styleClass="control-button" text="Run Next">
                 <graphic>
                     <ImageView pickOnBounds="true" preserveRatio="true">
                         <Image url="@../icons/next.png" />

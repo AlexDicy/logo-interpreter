@@ -46,7 +46,7 @@ public class FXDrawing extends LogoDrawing implements DrawingCanvas {
     public void strokeLine(double startX, double startY, double endX, double endY) {
         canvasCtx.setStroke(Utils.toFXPaint(getStrokeColor()));
         canvasCtx.setLineWidth(getStrokeSize());
-        // convert the coordinates to the system used by the canvas and draw the line
+        // convert the coordinates to the system used by the canvas and draw the index
         canvasCtx.strokeLine(getSafeX(startX), getHeight() - getSafeY(startY), getSafeX(endX), getHeight() - getSafeY(endY));
     }
 

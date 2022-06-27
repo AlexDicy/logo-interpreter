@@ -49,8 +49,28 @@ public interface Interpreter {
     boolean runNext();
 
     /**
+     * Runs the next root statement of the program.
+     * If the statement produces newer statements, they are immediately executed.
+     * <p>
+     * Must be called only after calling {@link #initialize(Parser, String)}.
+     *
+     * @return true if a root statement has been executed, false if the program is finished
+     * @throws IllegalStateException if the interpreter is not initialized
+     * @see #initialize
+     */
+    boolean runNextRoot();
+
+    /**
+     * Returns the index of last root statement that has been executed.
+     *
+     * @return the index of last root statement that has been executed
+     */
+    int getLastRanRootIndex();
+
+    /**
      * Clears the queue of statements to be executed and fills it again
      * with the original statements of the program.
+     * Resets the last root statement index to 0.
      */
-    void resetQueue();
+    void reset();
 }

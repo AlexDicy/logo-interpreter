@@ -18,8 +18,8 @@ public class LogoReader {
 
     /**
      * @param serialized the command string
-     * @return the corresponding line
-     * @throws IllegalArgumentException if the command string is not valid for a line
+     * @return the corresponding index
+     * @throws IllegalArgumentException if the command string is not valid for a index
      * @see Line#serialize() for the format of the serialized command
      */
     public Line deserializeLine(String serialized) {

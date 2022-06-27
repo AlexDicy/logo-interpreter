@@ -38,24 +38,25 @@ public class LogoParser implements Parser {
     @Override
     public List<SingleParseResult> parseWithResults(String input) throws ParserException {
         List<SingleParseResult> results = new ArrayList<>();
-        // every line is parsed as a statement
+        // every index is parsed as a statement
         String[] lines = input.split("\n");
-        for (String line : lines) {
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i];
             String trimmed = line.trim();
-            // skip if empty line or a comment
+            // skip if empty index or a comment
             if (trimmed.isEmpty() || trimmed.startsWith("#")) {
                 continue;
             }
-            results.add(parseLineWithResult(trimmed));
+            results.add(parseLineWithResult(trimmed, i));
         }
         return results;
     }
 
-    private Statement parseLine(String line) throws ParserException {
-        return parseLineWithResult(line).statement();
+    private Statement parseLine(String line, int lineIndex) throws ParserException {
+        return parseLineWithResult(line, lineIndex).statement();
     }
 
-    private SingleParseResult parseLineWithResult(String line) throws ParserException {
+    private SingleParseResult parseLineWithResult(String line, int lineIndex) throws ParserException {
         // split the input string on whitespace
         String[] strings = line.split("\\s+|\\b");
         List<Token> tokens = getTokens(strings);
@@ -64,7 +65,7 @@ public class LogoParser implements Parser {
         if (!(command.type() instanceof WordTokenType)) {
             throw new ParserException("Invalid command start syntax: " + command.text());
         }
-        return new SingleParseResult(getStatement(command.text().toUpperCase(), tokens), tokens);
+        return new SingleParseResult(getStatement(command.text().toUpperCase(), tokens), tokens, lineIndex);
     }
 
     protected List<Token> getTokens(String[] strings) throws InvalidCharactersException {

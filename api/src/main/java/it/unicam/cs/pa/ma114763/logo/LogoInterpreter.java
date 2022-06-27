@@ -18,9 +18,13 @@ public class LogoInterpreter implements Interpreter {
     private final DrawingContext drawingContext;
 
     private boolean initialized = false;
-    private List<Statement> statements;
+    private List<SingleParseResult> parseResults;
 
     private LinkedList<Statement> queue;
+
+    private int parseResultIndex = 0;
+
+    private int lastLine = 0;
 
     public LogoInterpreter(Processor processor, DrawingContext drawingContext) {
         this.processor = processor;
@@ -37,10 +41,9 @@ public class LogoInterpreter implements Interpreter {
     }
 
     private List<SingleParseResult> parseInput(Parser parser, String program) throws ParserException {
-        List<SingleParseResult> results = parser.parseWithResults(program);
-        statements = results.stream().map(SingleParseResult::statement).toList();
-        resetQueue();
-        return results;
+        parseResults = parser.parseWithResults(program);
+        reset();
+        return parseResults;
     }
 
     @Override
@@ -48,7 +51,7 @@ public class LogoInterpreter implements Interpreter {
         if (!initialized) {
             throw new IllegalStateException("This Interpreter is not initialized, call initialize() first");
         }
-        processor.execute(statements, drawingContext);
+        processor.execute(getStatements(), drawingContext);
     }
 
     @Override
@@ -69,7 +72,36 @@ public class LogoInterpreter implements Interpreter {
     }
 
     @Override
-    public void resetQueue() {
-        queue = new LinkedList<>(statements);
+    public boolean runNextRoot() {
+        if (!initialized) {
+            throw new IllegalStateException("This Interpreter is not initialized, call initialize() first");
+        }
+        if (parseResultIndex < parseResults.size()) {
+            SingleParseResult parseResult = parseResults.get(parseResultIndex);
+            List<Statement> results = processor.execute(parseResult.statement(), drawingContext);
+            if (results != null) {
+                processor.execute(results, drawingContext); // execute the remaining results
+            }
+            lastLine = parseResult.index();
+            parseResultIndex++;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int getLastRanRootIndex() {
+        return lastLine;
+    }
+
+    @Override
+    public void reset() {
+        queue = new LinkedList<>(getStatements());
+        parseResultIndex = 0;
+        lastLine = 0;
+    }
+
+    private List<Statement> getStatements() {
+        return parseResults.stream().map(SingleParseResult::statement).toList();
     }
 }

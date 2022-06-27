@@ -5,10 +5,10 @@ import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
 import it.unicam.cs.pa.ma114763.logo.drawing.Position2D;
 
 /**
- * @param start the start position of the line
- * @param end   the end position of the line
- * @param color the color of the line stroke
- * @param size  the size of the line stroke
+ * @param start the start position of the index
+ * @param end   the end position of the index
+ * @param color the color of the index stroke
+ * @param size  the size of the index stroke
  * @author Lorenzo Lapucci
  */
 public record Line(Position2D start, Position2D end, int size, Color color) implements Shape {
@@ -20,7 +20,7 @@ public record Line(Position2D start, Position2D end, int size, Color color) impl
     }
 
     /**
-     * Serializes the line into a command with the following format:
+     * Serializes the index into a command with the following format:
      * <p>
      * <code>LINE &lt;x<sub>1</sub>&gt; &lt;y<sub>1</sub>&gt; &lt;x<sub>2</sub>&gt; &lt;y<sub>2</sub>&gt; &lt;r&gt; &lt;g&gt; &lt;b&gt; [alpha] &lt;size&gt;</code>
      *
