@@ -42,7 +42,7 @@ public abstract class LogoDrawing implements DrawingContext {
     public LogoDrawing(int width, int height) {
         this.width = width;
         this.height = height;
-        this.position = new Point(width / 2.0, height / 2.0);
+        home();
     }
 
     @Override
@@ -73,6 +73,13 @@ public abstract class LogoDrawing implements DrawingContext {
     @Override
     public void setCurrentDirection(double angle) {
         direction = angle;
+    }
+
+    /**
+     * Sets the current position to the home position (center of the drawing)
+     */
+    public void home() {
+        position = new Point(width / 2.0, height / 2.0);
     }
 
     @Override
