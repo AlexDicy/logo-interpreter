@@ -21,6 +21,7 @@ public class FXDrawing extends LogoDrawing implements DrawingCanvas {
     public FXDrawing(Canvas canvas, int width, int height) {
         super(width, height);
         this.canvasCtx = canvas.getGraphicsContext2D();
+        repaint();
     }
 
     @Override
@@ -56,7 +57,7 @@ public class FXDrawing extends LogoDrawing implements DrawingCanvas {
         return this;
     }
 
-    private void repaint() {
+    public void repaint() {
         canvasCtx.setFill(Utils.toFXPaint(getBackgroundColor()));
         canvasCtx.fillRect(0, 0, getWidth(), getHeight());
         canvasCtx.setFill(Utils.toFXPaint(getFillColor()));

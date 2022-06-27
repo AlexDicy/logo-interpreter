@@ -11,3 +11,29 @@
     -fx-background-color: rgba(184, 197, 224, 0.9);
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 12, 0, 0, 0);
 }
+
+.command-input {
+    -fx-background-color: rgb(200, 214, 245);
+    -fx-background-insets: 0, 0;
+    -fx-background-radius: 0, 0;
+    -fx-pref-height: 30;
+    -fx-font-size: 14;
+}
+
+.bg-white {
+    -fx-background-color: white;
+}
+
+.bg-transparent {
+    -fx-background-color: transparent;
+}
+
+.controls-container {
+    -fx-background-color: rgb(26, 27, 38);
+}
+
+.split-pane-divider {
+    -fx-padding: 4;
+    -fx-background-color: #32364a;
+    -fx-border-color: #1c1d2e;
+}
