@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * This class is used to parse the input string and create a list of statements.
- * Parsed statements are then executed on a canvas by the {@link Processor}.
+ * Parsed statements are then executed on a drawing by the {@link Processor}.
  *
  * @author Lorenzo Lapucci
  */

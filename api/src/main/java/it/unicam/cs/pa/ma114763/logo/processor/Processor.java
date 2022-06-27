@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 /**
- * Given a list of statements, this class executes them on a canvas.
+ * Given a list of statements, this class executes them on a drawing.
  *
  * @author Lorenzo Lapucci
  */
