@@ -22,4 +22,14 @@ public interface Parser {
      * @throws ParserException if any error occurs
      */
     List<Statement> parse(String input) throws ParserException;
+
+    /**
+     * Takes the input string and tries to parse it into a list of parse results.
+     * If any error occurs, a {@link ParserException} is thrown.
+     *
+     * @param input the input string
+     * @return the list of parse results containing the statements and the tokens
+     * @throws ParserException if any error occurs
+     */
+    List<SingleParseResult> parseWithResults(String input) throws ParserException;
 }

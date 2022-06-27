@@ -1,7 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo.parser;
 
 import it.unicam.cs.pa.ma114763.logo.drawing.Color;
-import it.unicam.cs.pa.ma114763.logo.statement.Statement;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidCharactersException;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.InvalidSyntaxException;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
@@ -33,7 +32,12 @@ public class LogoParser implements Parser {
 
     @Override
     public List<Statement> parse(String input) throws ParserException {
-        List<Statement> statements = new ArrayList<>();
+        return parseWithResults(input).stream().map(SingleParseResult::statement).toList();
+    }
+
+    @Override
+    public List<SingleParseResult> parseWithResults(String input) throws ParserException {
+        List<SingleParseResult> results = new ArrayList<>();
         // every line is parsed as a statement
         String[] lines = input.split("\n");
         for (String line : lines) {
@@ -42,12 +46,16 @@ public class LogoParser implements Parser {
             if (trimmed.isEmpty() || trimmed.startsWith("#")) {
                 continue;
             }
-            statements.add(parseLine(trimmed));
+            results.add(parseLineWithResult(trimmed));
         }
-        return statements;
+        return results;
     }
 
     private Statement parseLine(String line) throws ParserException {
+        return parseLineWithResult(line).statement();
+    }
+
+    private SingleParseResult parseLineWithResult(String line) throws ParserException {
         // split the input string on whitespace
         String[] strings = line.split("\\s+|\\b");
         List<Token> tokens = getTokens(strings);
@@ -56,7 +64,7 @@ public class LogoParser implements Parser {
         if (!(command.type() instanceof WordTokenType)) {
             throw new ParserException("Invalid command start syntax: " + command.text());
         }
-        return getStatement(command.text().toUpperCase(), tokens);
+        return new SingleParseResult(getStatement(command.text().toUpperCase(), tokens), tokens);
     }
 
     protected List<Token> getTokens(String[] strings) throws InvalidCharactersException {
@@ -198,4 +206,5 @@ public class LogoParser implements Parser {
         }
         return tokens.subList(i, j);
     }
+
 }
