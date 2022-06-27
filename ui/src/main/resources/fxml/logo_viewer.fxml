@@ -1,94 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import it.unicam.cs.pa.ma114763.logo.ui.*?>
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1200.0" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.pa.ma114763.logo.ui.controller.LogoViewerController">
     <VBox layoutY="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
-        <children>
-            <HBox prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
-                <children>
-                    <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#reset" styleClass="control-button" text="Reset">
-                        <graphic>
-                            <ImageView pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../icons/reset.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <HBox.margin>
-                            <Insets right="2.0" />
-                        </HBox.margin>
-                    </Button>
-                    <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#resetAndRunAll" styleClass="control-button" text="Reset and Run All">
-                        <graphic>
-                            <ImageView pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../icons/run-all.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <HBox.margin>
-                            <Insets right="2.0" />
-                        </HBox.margin>
-                    </Button>
-                    <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#changeDrawingSize" styleClass="control-button" text="Change Drawing size">
-                        <graphic>
-                            <ImageView pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../icons/change-size.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <HBox.margin>
-                            <Insets right="2.0" />
-                        </HBox.margin>
-                    </Button>
-                    <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#saveToFile" styleClass="control-button" text="Save to file">
-                        <graphic>
-                            <ImageView pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../icons/save-file.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <HBox.margin>
-                            <Insets right="2.0" />
-                        </HBox.margin>
-                    </Button>
-                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                    <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#runNext" styleClass="control-button" text="Run Next">
-                        <graphic>
-                            <ImageView pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../icons/next.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                </children>
-            </HBox>
-            <SplitPane dividerPositions="0.75" prefHeight="160.0" prefWidth="200.0" styleClass="bg-transparent" VBox.vgrow="ALWAYS">
-                <items>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                        <children>
-                            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <ScrollPane styleClass="bg-transparent" VBox.vgrow="ALWAYS">
-                                    <AnchorPane>
-                                        <ResizableCanvas fx:id="canvas" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    </AnchorPane>
-                                </ScrollPane>
-                                <TextField fx:id="commandInput" onKeyPressed="#onCommandSend" promptText="Enter a command..." styleClass="command-input" />
-                            </VBox>
-                        </children>
-                    </AnchorPane>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-                </items>
-            </SplitPane>
-        </children>
+        <HBox prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+            <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#reset" styleClass="control-button" text="Reset">
+                <graphic>
+                    <ImageView pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../icons/reset.png" />
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets right="2.0" />
+                </HBox.margin>
+            </Button>
+            <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#resetAndRunAll" styleClass="control-button" text="Reset and Run All">
+                <graphic>
+                    <ImageView pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../icons/run-all.png" />
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets right="2.0" />
+                </HBox.margin>
+            </Button>
+            <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#changeDrawingSize" styleClass="control-button" text="Change Drawing size">
+                <graphic>
+                    <ImageView pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../icons/change-size.png" />
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets right="2.0" />
+                </HBox.margin>
+            </Button>
+            <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#saveToFile" styleClass="control-button" text="Save to file">
+                <graphic>
+                    <ImageView pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../icons/save-file.png" />
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets right="2.0" />
+                </HBox.margin>
+            </Button>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#runNext" styleClass="control-button" text="Run Next">
+                <graphic>
+                    <ImageView pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../icons/next.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+        <SplitPane dividerPositions="0.75" prefHeight="160.0" prefWidth="200.0" styleClass="bg-transparent" VBox.vgrow="ALWAYS">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <ScrollPane styleClass="bg-transparent" VBox.vgrow="ALWAYS">
+                        <AnchorPane>
+                            <ResizableCanvas fx:id="canvas" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        </AnchorPane>
+                    </ScrollPane>
+                    <TextField fx:id="commandInput" onKeyPressed="#onCommandSend" promptText="Enter a command..." styleClass="command-input" />
+                </VBox>
+            </AnchorPane>
+            <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="bg-transparent">
+                <TextFlow fx:id="commandsList" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <styleClass>
+                        <String fx:value="bg-transparent" />
+                        <String fx:value="commands-list" />
+                    </styleClass>
+               <padding>
+                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+               </padding>
+                </TextFlow>
+            </ScrollPane>
+        </SplitPane>
     </VBox>
     <fx:include source="header.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 </AnchorPane>

@@ -46,10 +46,17 @@
     -fx-font-weight: bold;
     -fx-text-fill: #3a393b;
 }
+
 .control-button:hover {
     -fx-background-color: rgb(209, 213, 227);
 }
 
+.commands-list {
+    -fx-background-color: #1b191f;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+    -fx-font-family: monospace;
+}
 
 .split-pane-divider {
     -fx-padding: 4;

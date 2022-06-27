@@ -3,7 +3,11 @@ package it.unicam.cs.pa.ma114763.logo.ui.controller;
 import it.unicam.cs.pa.ma114763.logo.LogoInterpreter;
 import it.unicam.cs.pa.ma114763.logo.io.FileResourceWriter;
 import it.unicam.cs.pa.ma114763.logo.parser.LogoParser;
+import it.unicam.cs.pa.ma114763.logo.parser.SingleParseResult;
+import it.unicam.cs.pa.ma114763.logo.parser.Token;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
+import it.unicam.cs.pa.ma114763.logo.parser.tokentype.NumberTokenType;
+import it.unicam.cs.pa.ma114763.logo.parser.tokentype.WordTokenType;
 import it.unicam.cs.pa.ma114763.logo.processor.LogoProcessor;
 import it.unicam.cs.pa.ma114763.logo.statement.Statement;
 import it.unicam.cs.pa.ma114763.logo.ui.CanvasResizeHandler;
@@ -17,6 +21,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -28,6 +34,7 @@ import java.util.List;
  */
 public class LogoViewerController implements DataController<String> {
     private String program;
+    private List<SingleParseResult> parseResults;
     private LogoParser parser;
     private LogoProcessor processor;
     private LogoInterpreter interpreter;
@@ -39,10 +46,14 @@ public class LogoViewerController implements DataController<String> {
     @FXML
     private TextField commandInput;
 
+    @FXML
+    private TextFlow commandsList;
+
     @Override
     public void setData(String data) {
         this.program = data;
         initializeInterpreter();
+        fillCommandsList();
     }
 
     @FXML
@@ -55,7 +66,7 @@ public class LogoViewerController implements DataController<String> {
         processor = new LogoProcessor();
         interpreter = new LogoInterpreter(processor, drawing);
         try {
-            interpreter.initialize(parser, program);
+            parseResults = interpreter.initialize(parser, program);
             interpreter.runAll();
         } catch (ParserException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -116,5 +127,32 @@ public class LogoViewerController implements DataController<String> {
                 new Alert(Alert.AlertType.ERROR, "Error while saving file\n\nError: " + e.getMessage()).show();
             }
         }
+    }
+
+    private void fillCommandsList() {
+        commandsList.getChildren().clear();
+        for (int i = 0; i < parseResults.size(); i++) {
+            for (Token token : parseResults.get(i).tokens()) {
+                commandsList.getChildren().addAll(getTextForToken(token, i == 0), new Text(" "));
+            }
+            if (commandsList.getChildren().size() > 0) {
+                Text last = (Text) commandsList.getChildren().get(commandsList.getChildren().size() - 1);
+                last.setText("\n");
+            }
+        }
+    }
+
+    private Text getTextForToken(Token result, boolean highlight) {
+        Text line = new Text();
+        switch (result.type()) {
+            case WordTokenType t -> line.setStyle("-fx-fill: #20A3D6;-fx-font-weight:bold");
+            case NumberTokenType t -> line.setStyle("-fx-fill: #61e5e5");
+            default -> line.setStyle("-fx-fill: white");
+        }
+        if (highlight) {
+            line.setStyle(line.getStyle() + ";-fx-fill: white");
+        }
+        line.setText(result.text());
+        return line;
     }
 }
