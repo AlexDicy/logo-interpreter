@@ -12,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class LogoViewerController implements DataController<String> {
     }
 
     @FXML
-    private void onCommandSend(javafx.scene.input.KeyEvent event) {
+    private void onCommandSend(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             String command = commandInput.getText();
             try {
@@ -66,5 +67,11 @@ public class LogoViewerController implements DataController<String> {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }
+    }
+
+    @FXML
+    private void clearAndRunAll() {
+        drawing.clear();
+        interpreter.runAll();
     }
 }
