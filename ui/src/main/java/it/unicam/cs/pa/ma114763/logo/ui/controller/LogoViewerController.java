@@ -88,6 +88,11 @@ public class LogoViewerController implements DataController<String> {
     }
 
     @FXML
+    private void goBack() {
+        LogoUI.getInstance().openRoot("fxml/choose_file.fxml");
+    }
+
+    @FXML
     private void reset() {
         drawing.clear();
         drawing.home();

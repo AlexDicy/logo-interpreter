@@ -11,6 +11,17 @@
 <AnchorPane prefHeight="720.0" prefWidth="1200.0" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.pa.ma114763.logo.ui.controller.LogoViewerController">
     <VBox layoutY="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
         <HBox prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+            <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#goBack" styleClass="control-button" text="Go back">
+                <graphic>
+                    <ImageView pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../icons/home.png" />
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets right="2.0" />
+                </HBox.margin>
+            </Button>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#reset" styleClass="control-button" text="Reset">
                 <graphic>
                     <ImageView pickOnBounds="true" preserveRatio="true">

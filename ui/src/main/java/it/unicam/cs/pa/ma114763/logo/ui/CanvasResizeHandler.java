@@ -18,6 +18,7 @@ public class CanvasResizeHandler {
 
     public void resize(int width, int height) {
         canvas.resize(width, height);
+        canvas.getGraphicsContext2D().clearRect(0, 0, width, height);
         drawing.setWidth(width);
         drawing.setHeight(height);
     }

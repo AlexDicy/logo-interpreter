@@ -22,13 +22,28 @@ public class ChooseFileController {
         fileChooser.setTitle("Open Logo Program File");
         File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
         if (file != null) {
-            FileResourceReader reader = new FileResourceReader(file);
-            try {
-                String program = reader.read();
-                LogoUI.getInstance().openRoot("fxml/logo_viewer.fxml", program, false);
-            } catch (IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Error while reading file\n\nError: " + e.getMessage()).show();
-            }
+            LogoUI.getInstance().openRoot("fxml/logo_viewer.fxml", readFile(file), false);
         }
+    }
+
+    @FXML
+    private void openOutputFile(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Logo Output File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Logo file", "*.logo"), new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+        if (file != null) {
+            LogoUI.getInstance().openRoot("fxml/output_viewer.fxml", readFile(file), false);
+        }
+    }
+
+    private String readFile(File file) {
+        FileResourceReader reader = new FileResourceReader(file);
+        try {
+            return reader.read();
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Error while reading file\n\nError: " + e.getMessage()).show();
+        }
+        return null;
     }
 }

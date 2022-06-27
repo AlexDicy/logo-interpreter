@@ -1,6 +1,5 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
-import it.unicam.cs.pa.ma114763.logo.io.FileResourceReader;
 import it.unicam.cs.pa.ma114763.logo.ui.controller.DataController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -35,15 +33,6 @@ public class LogoUI extends Application {
         //noinspection ConstantConditions
         stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icons/app-icon.png")));
         stage.show();
-
-        // TODO: remove this test code
-        FileResourceReader reader = new FileResourceReader(new File("D:\\Downloads\\logoprogram.txt"));
-        try {
-            String program = reader.read();
-            LogoUI.getInstance().openRoot("fxml/logo_viewer.fxml", program, false);
-        } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Error while reading file\n\nError: " + e.getMessage()).show();
-        }
     }
 
     public void openRoot(String fxml) {
