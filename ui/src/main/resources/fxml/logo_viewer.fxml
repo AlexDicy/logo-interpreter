@@ -19,9 +19,9 @@
                                 </image>
                             </ImageView>
                         </graphic>
-                  <HBox.margin>
-                     <Insets right="2.0" />
-                  </HBox.margin>
+                        <HBox.margin>
+                            <Insets right="2.0" />
+                        </HBox.margin>
                     </Button>
                     <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#resetAndRunAll" styleClass="control-button" text="Reset and Run All">
                         <graphic>
@@ -31,9 +31,9 @@
                                 </image>
                             </ImageView>
                         </graphic>
-                  <HBox.margin>
-                     <Insets right="2.0" />
-                  </HBox.margin>
+                        <HBox.margin>
+                            <Insets right="2.0" />
+                        </HBox.margin>
                     </Button>
                     <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#changeDrawingSize" styleClass="control-button" text="Change Drawing size">
                         <graphic>
@@ -43,9 +43,9 @@
                                 </image>
                             </ImageView>
                         </graphic>
-                  <HBox.margin>
-                     <Insets right="2.0" />
-                  </HBox.margin>
+                        <HBox.margin>
+                            <Insets right="2.0" />
+                        </HBox.margin>
                     </Button>
                     <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#saveToFile" styleClass="control-button" text="Save to file">
                         <graphic>
@@ -55,12 +55,12 @@
                                 </image>
                             </ImageView>
                         </graphic>
-                  <HBox.margin>
-                     <Insets right="2.0" />
-                  </HBox.margin>
+                        <HBox.margin>
+                            <Insets right="2.0" />
+                        </HBox.margin>
                     </Button>
                     <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                    <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#runNext" styleClass="control-button" text="Next">
+                    <Button contentDisplay="RIGHT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#runNext" styleClass="control-button" text="Run Next">
                         <graphic>
                             <ImageView pickOnBounds="true" preserveRatio="true">
                                 <image>
@@ -76,9 +76,11 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                         <children>
                             <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <AnchorPane VBox.vgrow="ALWAYS">
-                                    <ResizableCanvas fx:id="canvas" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                </AnchorPane>
+                                <ScrollPane styleClass="bg-transparent" VBox.vgrow="ALWAYS">
+                                    <AnchorPane>
+                                        <ResizableCanvas fx:id="canvas" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </AnchorPane>
+                                </ScrollPane>
                                 <TextField fx:id="commandInput" onKeyPressed="#onCommandSend" promptText="Enter a command..." styleClass="command-input" />
                             </VBox>
                         </children>

@@ -29,6 +29,10 @@
     -fx-background-color: transparent;
 }
 
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
 .controls-container {
     -fx-background-color: rgb(26, 27, 38);
 }
