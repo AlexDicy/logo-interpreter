@@ -1,4 +1,4 @@
-package it.unicam.cs.pa.ma114763.logo.ui.controller.DataController;
+package it.unicam.cs.pa.ma114763.logo.ui.controller;
 
 /**
  * @author Lorenzo Lapucci

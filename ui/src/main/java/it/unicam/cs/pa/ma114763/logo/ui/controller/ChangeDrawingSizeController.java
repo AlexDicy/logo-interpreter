@@ -1,7 +1,6 @@
 package it.unicam.cs.pa.ma114763.logo.ui.controller;
 
 import it.unicam.cs.pa.ma114763.logo.ui.CanvasResizeHandler;
-import it.unicam.cs.pa.ma114763.logo.ui.controller.DataController.DataController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

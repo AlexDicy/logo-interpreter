@@ -1,7 +1,7 @@
 package it.unicam.cs.pa.ma114763.logo.ui;
 
 import it.unicam.cs.pa.ma114763.logo.io.FileResourceReader;
-import it.unicam.cs.pa.ma114763.logo.ui.controller.DataController.DataController;
+import it.unicam.cs.pa.ma114763.logo.ui.controller.DataController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

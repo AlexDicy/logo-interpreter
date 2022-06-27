@@ -9,7 +9,6 @@ import it.unicam.cs.pa.ma114763.logo.statement.Statement;
 import it.unicam.cs.pa.ma114763.logo.ui.CanvasResizeHandler;
 import it.unicam.cs.pa.ma114763.logo.ui.FXDrawing;
 import it.unicam.cs.pa.ma114763.logo.ui.LogoUI;
-import it.unicam.cs.pa.ma114763.logo.ui.controller.DataController.DataController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
