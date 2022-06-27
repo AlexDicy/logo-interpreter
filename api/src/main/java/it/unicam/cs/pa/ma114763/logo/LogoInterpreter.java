@@ -33,12 +33,14 @@ public class LogoInterpreter implements Interpreter {
             throw new IllegalStateException("This Interpreter is already initialized");
         }
         initialized = true;
-        parseInput(parser, program);
+        return parseInput(parser, program);
     }
 
-    private void parseInput(Parser parser, String program) throws ParserException {
-        statements = parser.parse(program);
+    private List<SingleParseResult> parseInput(Parser parser, String program) throws ParserException {
+        List<SingleParseResult> results = parser.parseWithResults(program);
+        statements = results.stream().map(SingleParseResult::statement).toList();
         resetQueue();
+        return results;
     }
 
     @Override
