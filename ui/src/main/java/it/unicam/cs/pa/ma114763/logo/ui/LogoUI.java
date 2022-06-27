@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -29,7 +30,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class LogoUI extends Application {
     @Override
     public void start(Stage stage) throws ParserException, IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/root.fxml"));
+        //noinspection ConstantConditions
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/choose_file.fxml"));
+        stage.setTitle("Logo Interpreter");
+        //noinspection ConstantConditions
+        stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icons/app-icon.png")));
+        stage.setScene(new Scene(root));
+        stage.show();
 
         final int width = 800;
         final int height = 600;
@@ -58,8 +65,8 @@ public class LogoUI extends Application {
         textArea.setPrefHeight(textAreaHeight);
         textArea.setWrapText(true);
         Scene scene = new Scene(new VBox(canvas, textArea), width, height + textAreaHeight);
-        stage.setScene(scene);
-        stage.show();
+        //stage.setScene(scene);
+        //stage.show();
 
         DrawingContext drawing = new FXDrawing(canvas, width, height);
         LogoInterpreter interpreter = new LogoInterpreter(new LogoProcessor(), drawing);
