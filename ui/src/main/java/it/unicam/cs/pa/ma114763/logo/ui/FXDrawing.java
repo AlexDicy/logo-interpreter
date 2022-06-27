@@ -70,6 +70,7 @@ public class FXDrawing extends LogoDrawing implements DrawingCanvas {
     }
 
     public void repaint() {
+        canvasCtx.clearRect(0, 0, getWidth(), getHeight());
         canvasCtx.setFill(Utils.toFXPaint(getBackgroundColor()));
         canvasCtx.fillRect(0, 0, getWidth(), getHeight());
         canvasCtx.setFill(Utils.toFXPaint(getFillColor()));

@@ -26,6 +26,7 @@ public class OutputViewerController implements DataController<String> {
         List<Shape> shapes = reader.read(data);
         FXDrawing drawing = parseHeaderAndGetDrawing(data);
         canvas.resize(drawing.getWidth(), drawing.getHeight());
+        drawing.repaint();
         for (Shape shape : shapes) {
             shape.draw(drawing);
         }
