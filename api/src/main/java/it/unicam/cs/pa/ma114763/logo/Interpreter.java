@@ -1,7 +1,10 @@
 package it.unicam.cs.pa.ma114763.logo;
 
 import it.unicam.cs.pa.ma114763.logo.parser.Parser;
+import it.unicam.cs.pa.ma114763.logo.parser.SingleParseResult;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
+
+import java.util.List;
 
 /**
  * This class represents an interpreter for a language, its main implementation
@@ -16,10 +19,11 @@ public interface Interpreter {
      *
      * @param parser  the parser to use
      * @param program the program to interpret
+     * @return the list of parsing results
      * @throws ParserException       if the program contains syntax errors
      * @throws IllegalStateException if the interpreter is already initialized
      */
-    void initialize(Parser parser, String program) throws ParserException;
+    List<SingleParseResult> initialize(Parser parser, String program) throws ParserException;
 
     /**
      * Runs the program from the beginning until the end.

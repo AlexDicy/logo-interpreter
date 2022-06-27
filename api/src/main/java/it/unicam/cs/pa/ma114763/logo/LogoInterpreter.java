@@ -2,6 +2,7 @@ package it.unicam.cs.pa.ma114763.logo;
 
 import it.unicam.cs.pa.ma114763.logo.drawing.DrawingContext;
 import it.unicam.cs.pa.ma114763.logo.parser.Parser;
+import it.unicam.cs.pa.ma114763.logo.parser.SingleParseResult;
 import it.unicam.cs.pa.ma114763.logo.parser.exception.ParserException;
 import it.unicam.cs.pa.ma114763.logo.processor.Processor;
 import it.unicam.cs.pa.ma114763.logo.statement.Statement;
@@ -27,7 +28,7 @@ public class LogoInterpreter implements Interpreter {
     }
 
     @Override
-    public void initialize(Parser parser, String program) throws ParserException {
+    public List<SingleParseResult> initialize(Parser parser, String program) throws ParserException {
         if (initialized) {
             throw new IllegalStateException("This Interpreter is already initialized");
         }
